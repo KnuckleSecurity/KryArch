@@ -3,7 +3,7 @@
 country=$(curl ifconfig.co/country-iso)
 timedatectl set-ntp true
 pacman -S --noconfirm pacman-contrib reflector rsync
-rm /etc/pacman.d/mirrorlist/
+rm /etc/pacman.d/mirrorlist
 reflector -a 48 -c ${country} -l 20 --sort score --save /etc/pacman.d/mirrorlist
 
 DISK="/dev/sda"
