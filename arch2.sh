@@ -10,6 +10,7 @@ pacman -S networkmanager dhclient --noconfirm --needed
 systemctl enable NetworkManager
 
 read -p "Enter Hostname:" hostname
+echo "Create a password for root: "
 passwd root
 pacman -S --noconfirm pacman-contrib curl reflector rsync
 
@@ -38,8 +39,8 @@ echo "::1     localhost" >> /etc/hosts
 echo "127.0.1.1     $(hostname).localdomain $(hostname)" >> /etc/hosts
 echo "$(hostname)" > /etc/hostname
 
-useradd -m -g users -G wheel -s /bin/bash $username 
 read -p "Enter Username: " username
+useradd -m -g users -G wheel -s /bin/bash $username 
 echo "Create a password for user $(username): "
 passwd $username
 su $username 
