@@ -29,5 +29,6 @@ mount -t vfat "${DISK}1" /mnt/boot/
 pacstrap /mnt base base-devel linux linux-firmware vim nano sudo archlinux-keyring --noconfirm --needed
 genfstab -U /mnt >> /mnt/etc/fstab
 
-arch-chroot /mnt
 ) | tee kryarch1-logs.txt
+mv ~/KryArch /mnt/root
+arch-chroot /mnt
