@@ -32,4 +32,17 @@ sed -i 's/^#ParallelDownloads = 5/ParrallellDownloads = 3/' /etc/pacman.conf
 sed -i '/#\[multilib\]/s/^#//' /etc/pacman.conf
 sed -i '/\[multilib\]/{n;s/^#//;}' /etc/pacman.conf
 pacman -Sy --no-confirm
+
+echo "127.0.0.1     localhost" > /etc/hosts
+echo "::1     localhost" >> /etc/hosts
+echo "127.0.1.1     $(hostname).localdomain $(hostname)" >> /etc/hosts
+echo "$(hostname)" > /etc/hostname
+
+useradd -m -g users -G wheel -s /bin/bash $username 
+read -p "Enter Username: " username
+echo "Create a password for user $(username): "
+passwd $username
+su $username 
+echo "Running as $(username)."
+
 ) | tee arch2-logs.txt
