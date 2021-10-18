@@ -36,14 +36,14 @@ pacman -Sy --no-confirm
 
 echo "127.0.0.1     localhost" > /etc/hosts
 echo "::1     localhost" >> /etc/hosts
-echo "127.0.1.1     $(hostname).localdomain $(hostname)" >> /etc/hosts
-echo "$(hostname)" > /etc/hostname
+echo "127.0.1.1     $hostname.localdomain $hostname" >> /etc/hosts
+echo "$hostname" > /etc/hostname
 
 read -p "Enter Username: " username
 useradd -m -g users -G wheel -s /bin/bash $username 
-echo "Create a password for user $(username): "
+echo "Create a password for user $username: "
 passwd $username
 su $username 
-echo "Running as $(username)."
+echo "Running as $username."
 
 ) | tee arch2-logs.txt
