@@ -30,4 +30,4 @@ pacstrap /mnt base base-devel linux linux-firmware vim nano sudo archlinux-keyri
 genfstab -U /mnt >> /mnt/etc/fstab
 
 arch-chroot /mnt
-
+) | tee kryarch1-logs.txt
