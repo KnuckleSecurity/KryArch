@@ -1,5 +1,5 @@
 #!/bin/bash
-
+(
 country=$(curl ifconfig.co/country-iso)
 timedatectl set-ntp true
 pacman -Sy
@@ -30,7 +30,6 @@ mount -t vfat "${DISK}1" /mnt/boot/
 pacstrap /mnt base base-devel linux linux-firmware vim nano sudo archlinux-keyring --noconfirm --needed
 genfstab -U /mnt >> /mnt/etc/fstab
 
-###
 arch-chroot /mnt
 
 pacman -S networkmanager dhclient --noconfirm --needed
@@ -58,3 +57,5 @@ sed -i 's/#Color/Color/' /etc/pacman.conf
 sed -i 's/^#ParallellDownloads/ParrallellDownloads=3/'
 sed -i '/#\[multilib\]/s/^#//' /etc/pacman.conf
 sed -i '/\[multilib\]/{n;s/^#//;}' /etc/pacman.conf
+
+) | tee logs.txt
