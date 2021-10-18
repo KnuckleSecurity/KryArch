@@ -1,4 +1,12 @@
 #!/bin/bash
+#      __            __   __       
+#|__/ |__) \ /  /\  |__) /  ` |__| 
+#|  \ |  \  |  /~~\ |  \ \__, |  | 
+#
+#Author:Burak Baris
+#Website:krygeNNN.github.io
+
+
 (
 country=$(curl ifconfig.co/country-iso)
 timedatectl set-ntp true

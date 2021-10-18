@@ -1,3 +1,10 @@
+#!/bin/bash
+#      __            __   __       
+#|__/ |__) \ /  /\  |__) /  ` |__| 
+#|  \ |  \  |  /~~\ |  \ \__, |  | 
+#
+#Author:Burak Baris
+#Website:krygeNNN.github.io
 (
 pacman -S networkmanager dhclient --noconfirm --needed
 systemctl enable NetworkManager
