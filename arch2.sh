@@ -11,7 +11,7 @@ systemctl enable NetworkManager
 
 echo "Create a password for root: "
 passwd root
-read -p "Declar the Hostname:" hostname
+read -p "Declare a Hostname:" hostname
 pacman -S --noconfirm pacman-contrib curl reflector rsync
 
 country=$(curl ifconfig.co/country-iso)
