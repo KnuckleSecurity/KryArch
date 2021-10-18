@@ -1,6 +1,8 @@
+(
 pacman -S networkmanager dhclient --noconfirm --needed
 systemctl enable NetworkManager
 
+read -p "Enter Hostname:" hostname
 passwd root
 pacman -S --noconfirm pacman-contrib curl reflector rsync
 
@@ -22,3 +24,5 @@ sed -i 's/#Color/Color/' /etc/pacman.conf
 sed -i 's/^#ParallelDownloads = 5/ParrallellDownloads = 3/' /etc/pacman.conf
 sed -i '/#\[multilib\]/s/^#//' /etc/pacman.conf
 sed -i '/\[multilib\]/{n;s/^#//;}' /etc/pacman.conf
+pacman -Sy --no-confirm
+) | tee arch2-logs.txt
