@@ -29,16 +29,14 @@ read -p ">>" GPU
 case $GPU in
 
   1|AMD|amd|Amd|Intel|INTEL|intel)
-    pacman -S mesa 
-    pacman -S xorg-server 
+    pacman -S mesa xorg-server 
     ;;
 
   2|NVIDIA|nvidia|Nvidia)
-    pacman -S nvidia 
-    pacman -S xorg-server
+    pacman -S nvidia xorg-server
     ;;
   3|vm|VM|Vm)
-    pacman -S virtualbox-guest-utils xf86-video-vmware 
+    pacman -S virtualbox-guest-utils xf86-video-vmware xorg-server 
     echo "Are you using VirtualBox - y/N ?"
     read -p ">> " inpt
     if [[ $inpt == "y" ]]
