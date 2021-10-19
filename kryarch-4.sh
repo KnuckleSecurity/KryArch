@@ -37,6 +37,7 @@ case $GPU in
     ;;
   3|vm|VM|Vm)
     pacman -S virtualbox-guest-utils xf86-video-vmware xorg-server 
+    clear
     echo "Are you using VirtualBox - y/N ?"
     read -p ">> " inpt
     if [[ $inpt == "y" ]]
