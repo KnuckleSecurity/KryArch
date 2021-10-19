@@ -61,7 +61,7 @@ case $SWP in
         chmod 600 /swapfile
         mkswap /swapfile
         echo '/swapfile none swap sw 0 0' | tee -a /etc/fstab
-        spawon -a
+        swapon -a
         free -m
         echo "If you can see swap size corresponds to your input, it has been created successfully."
         ;;
