@@ -9,9 +9,12 @@
 pacman -S networkmanager dhclient --noconfirm --needed
 systemctl enable NetworkManager
 
+clear
 echo "Create a password for root: "
 passwd root
-read -p "Declare a Hostname:" hostname
+clear
+echo "Declare a Hostname"
+read -p ">> " hostname
 pacman -S --noconfirm pacman-contrib curl reflector rsync
 
 country=$(curl ifconfig.co/country-iso)
@@ -39,8 +42,11 @@ echo "::1           localhost" >> /etc/hosts
 echo "127.0.1.1     $hostname.localdomain $hostname" >> /etc/hosts
 echo "$hostname" > /etc/hostname
 
-read -p "Create a user: " username
+clear
+echo "Create a user"
+read -p ">> " username
 useradd -m -g users -G wheel -s /bin/bash $username 
+clear
 echo "Create a password for user $username: "
 passwd $username
 

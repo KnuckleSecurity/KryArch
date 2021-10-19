@@ -5,34 +5,66 @@
 #
 #Author:Burak Baris
 #Website:krygeNNN.github.io
-echo -e "Select your CPU manufacturer\n1-AMD\n2-INTEL"
+
+pacman -S xorg-server
+clear
+echo -e "Select your CPU manufacturer\n1-AMD\n2-INTEL\n3-Skip"
 read -p ">>" CPU
 case $CPU in
 
   1|AMD|amd|Amd)
-    echo -n "amd cpu"
+    pacman -S amd-ucode  
     ;;
 
   2|INTEL|intel|Intel)
-    echo -n "intel cpu"
+    pacman -S intel-ucode 
     ;;
   *)
-    echo -n "other"
+    echo "Skipping..."
     ;;
 esac
 
-echo -e "Select your GPU manufacturer\n1-AMD\n2-NVIDIA"
+clear
+echo -e "Select your GPU manufacturer\n1-AMD or INTEL\n2-NVIDIA\n3-VM\n4-Skip"
 read -p ">>" GPU
 case $GPU in
 
-  1|AMD|amd|Amd)
-    echo -n "amd cpu"
+  1|AMD|amd|Amd|Intel|INTEL|intel)
+    pacman -S mesa
     ;;
 
   2|NVIDIA|nvidia|Nvidia)
-    echo -n ""
+    pacman -S nvidia 
+    ;;
+  3|vm|VM|Vm)
+    pacman -S virtualbox-guest-utils xf86-video-vmware 
+    echo "Are you using VirtualBox \[y/N\] ?"
+    read -p ">> " inpt
+    if [[ $inpt == "y" ]]
+    then
+        systemctl enable vboxservice
+    fi
     ;;
   *)
-    echo -n "other"
+    echo "Skipping..."
     ;;
+esac
+
+clear
+echo "Do you want to create a swap partition \[y/N\]?"
+read -p ">> " SWP
+case $SWP in
+    1|y|Y|Yes|YES|yes)
+        echo "Declare the swap partition size. Minimum 512MB, Maximum 8GB Recommended."
+        read -p "Enter as MegaBytes >> "
+        dd if=/dev/zero of=/swapfile bs=1M count=$SWP status=progress 
+        chmod 600 /swapfile
+        mkswap /swapfile
+        spawon -a
+        free -m
+        echo "Spaw partition created succesfuly."
+        ;;
+    2|n|N|No|NO|no)
+        echo "Skipping creating swap..."
+        ;;
 esac
