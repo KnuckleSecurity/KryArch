@@ -35,8 +35,24 @@ mkdir -p /mnt/boot/efi
 mount -t vfat "${DISK}1" /mnt/boot/efi
 
 pacstrap /mnt base base-devel linux linux-firmware vim nano sudo archlinux-keyring --noconfirm --needed
-genfstab -U /mnt >> /mnt/etc/fstab
 
+echo "Do you want to create a swap partition ?"
+read -p ">> " SWP
+
+case $SWP in
+    1|y|Y|Yes|YES|yes)
+        echo "Declare the swap partition size. Minimum 512MB, Maximum 8GB Recommended."
+        read -p "Enter as MegaBytes >> "
+        dd if=/dev/zero of=/swapfile bs=1M count=$SWP status=progress 
+        chmod 600 /swapfile
+        mkswap /swapfile
+        spawon -a
+        ;;
+    2|n|N|No|NO|no)
+        echo "Skipping creating swap..."
+        ;;
+esac
+genfstab -U /mnt >> /mnt/etc/fstab
 ) | tee kryarch1-logs.txt
 mv ~/kryarch /mnt/root
 arch-chroot /mnt
