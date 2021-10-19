@@ -47,7 +47,7 @@ echo "Create a user"
 read -p ">> " username
 useradd -m -g users -G wheel -s /bin/bash $username 
 clear
-echo "Create a password for user $username: "
+echo ">> Create a password for user $username: "
 passwd $username
 
 ) | tee arch2-logs.txt

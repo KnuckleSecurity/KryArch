@@ -6,7 +6,6 @@
 #Author:Burak Baris
 #Website:krygeNNN.github.io
 
-pacman -S xorg-server
 clear
 echo -e "Select your CPU manufacturer\n1-AMD\n2-INTEL\n3-Skip"
 read -p ">>" CPU
@@ -30,15 +29,17 @@ read -p ">>" GPU
 case $GPU in
 
   1|AMD|amd|Amd|Intel|INTEL|intel)
-    pacman -S mesa
+    pacman -S mesa 
+    pacman -S xorg-server 
     ;;
 
   2|NVIDIA|nvidia|Nvidia)
     pacman -S nvidia 
+    pacman -S xorg-server
     ;;
   3|vm|VM|Vm)
     pacman -S virtualbox-guest-utils xf86-video-vmware 
-    echo "Are you using VirtualBox \[y/N\] ?"
+    echo "Are you using VirtualBox - y/N ?"
     read -p ">> " inpt
     if [[ $inpt == "y" ]]
     then
@@ -51,7 +52,7 @@ case $GPU in
 esac
 
 clear
-echo "Do you want to create a swap partition \[y/N\]?"
+echo "Do you want to create a swap partition - y/N ?"
 read -p ">> " SWP
 case $SWP in
     1|y|Y|Yes|YES|yes)
