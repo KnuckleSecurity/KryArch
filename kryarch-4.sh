@@ -61,9 +61,10 @@ case $SWP in
         dd if=/dev/zero of=/swapfile bs=1M count=$SWPMB status=progress 
         chmod 600 /swapfile
         mkswap /swapfile
+        echo '/swapfile none swap sw 0 0' | tee -a /etc/fstab
         spawon -a
         free -m
-        echo "Spaw partition created succesfuly."
+        echo "If you can see swap size corresponds to your input, it has been created successfully."
         ;;
     2|n|N|No|NO|no)
         echo "Skipping creating swap..."
