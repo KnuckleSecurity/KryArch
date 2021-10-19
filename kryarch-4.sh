@@ -55,6 +55,7 @@ echo "Do you want to create a swap partition - y/N ?"
 read -p ">> " SWP
 case $SWP in
     1|y|Y|Yes|YES|yes)
+        mkdir /swapfile
         echo "Declare the swap partition size. Minimum 512MB, Maximum 8GB Recommended."
         read -p "Enter as MegaBytes >> "
         dd if=/dev/zero of=/swapfile bs=1M count=$SWP status=progress 
