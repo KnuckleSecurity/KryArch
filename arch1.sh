@@ -32,7 +32,7 @@ echo "y" | mkfs.ext4 "${DISK}2"
 
 mount -t ext4 "${DISK}2" /mnt
 mkdir -p /mnt/boot/efi
-mount -t vfat "${DISK}1" /mnt/boot/
+mount -t vfat "${DISK}1" /mnt/boot/efi
 
 pacstrap /mnt base base-devel linux linux-firmware vim nano sudo archlinux-keyring --noconfirm --needed
 genfstab -U /mnt >> /mnt/etc/fstab
