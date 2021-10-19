@@ -15,7 +15,7 @@ read -p "Declare a Hostname:" hostname
 pacman -S --noconfirm pacman-contrib curl reflector rsync
 
 country=$(curl ifconfig.co/country-iso)
-reflector -a 48 -c ${country} -l 20 --sort score --save /etc/pacman.d/mirrorlist
+reflector -a 48 -c ${country} -l 20 --sort rate --save /etc/pacman.d/mirrorlist
 
 cores=$(grep -c ^processor /proc/cpuinfo)
 sudo sed -i "s/#MAKEFLAGS=\"-j2\"/MAKEFLAGS=-j${cores}/g" /etc/makepkg.conf 
