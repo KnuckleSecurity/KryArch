@@ -14,9 +14,9 @@ echo  "-------------------------------------------------------------------------
 read anykey
 
 clear
-echo  "-----------------"
-echo  "Updating mirrors."
-echo  "-----------------"
+echo  "---------------------"
+echo  "Updating the mirrors."
+echo  "---------------------"
 ./spinner.sh
 (
 country=$(curl ifconfig.co/country-iso)
