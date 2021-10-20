@@ -26,8 +26,16 @@ case $SWP in
         mkswap /swapfile
         echo '/swapfile none swap sw 0 0' | tee -a /etc/fstab
         swapon -a
-        free -m
 esac
+clear
+
+
+echo  "----------------------"
+echo  " Updating the mirrors."
+echo  "----------------------"
+pacman -S --noconfirm pacman-contrib curl reflector rsync
+country=$(curl ifconfig.co/country-iso)
+reflector -c ${country} -l 5 --sort rate --save /etc/pacman.d/mirrorlist
 clear
 
 
@@ -51,15 +59,6 @@ echo " * Specify the hostname"
 echo "-----------------------"
 sleep 0.1
 read -p ">> " hostname
-clear
-
-
-echo  "----------------------"
-echo  " Updating the mirrors."
-echo  "----------------------"
-pacman -S --noconfirm pacman-contrib curl reflector rsync
-country=$(curl ifconfig.co/country-iso)
-reflector -c ${country} -l 5 --sort rate --save /etc/pacman.d/mirrorlist
 clear
 
 
@@ -114,25 +113,25 @@ clear
 echo "--------------------------------------------"
 echo " Installing and setting up GRUB bootloader. "
 echo "--------------------------------------------"
-pacman -Sy grub efibootmgr dosfstools os-prober mtools
+pacman -Sy grub efibootmgr dosfstools os-prober mtools --noconfirm
 grub-install --target=x86_64-efi --bootloader-id=grub_uefi --recheck
 grub-mkconfig -o /boot/grub/grub.cfg
 clear
 
 
 echo "----------------------------------------------------------"
-echo -e " * Select your CPU manufacturer\n1-AMD\n2-INTEL\n3-Skip"
+echo -e " * Select your CPU manufacturer\n----------------------------------------------------------\n1-AMD\n2-INTEL\n3-Skip"
 echo "----------------------------------------------------------"
 sleep 0.1
 read -p ">>" CPU
 case $CPU in
 
   1|AMD|amd|Amd)
-    pacman -S amd-ucode  
+    pacman -S amd-ucode --noconfirm 
     ;;
 
   2|INTEL|intel|Intel)
-    pacman -S intel-ucode 
+    pacman -S intel-ucode --noconfirm
     ;;
   *)
     echo "Skipping..."
@@ -142,7 +141,7 @@ clear
 
 
 echo "--------------------------------------------------------------------------"
-echo -e " * Select your GPU manufacturer\n1-AMD or INTEL\n2-NVIDIA\n3-VM\n4-Skip"
+echo -e " * Select your GPU manufacturer\n--------------------------------------------------------------------------\n1-AMD or INTEL\n2-NVIDIA\n3-VM\n4-Skip"
 echo "--------------------------------------------------------------------------"
 sleep 0.1
 read -p ">>" GPU
@@ -173,8 +172,8 @@ case $GPU in
 esac
 clear
 
-echo "------------------------"
-echo -e " * Choose your desktop. \n---------------------\n1-Gnome\n2-Xfce\n3-Plasma\n4-Mate\n5-i3\n6-Awesome\n7-Skip" 
+echo "-----------------------"
+echo -e " * Choose your desktop. \n-----------------------\n1-Gnome\n2-Xfce\n3-Plasma\n4-Mate\n5-i3\n6-Awesome\n7-Skip" 
 echo "------------------------"
 read desktop
 
@@ -199,7 +198,7 @@ case $desktop in
         systemctl enable lightdm
         ;;
     5|i3|I3)
-        pacman i3
+        pacman -S i3
         pacman -S lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings --noconfirm
         systemctl enable lightdm
         ;;
