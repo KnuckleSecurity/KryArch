@@ -20,7 +20,7 @@ echo "-------------------------------------------------"
 (
 pacman -S networkmanager dhclient --noconfirm --needed
 systemctl enable NetworkManager
-) 2>1 1>/dev/null
+)>/dev/null
 kill $(cat /tmp/running)
 clear
 
@@ -45,7 +45,7 @@ echo  "----------------------"
 pacman -S --noconfirm pacman-contrib curl reflector rsync
 country=$(curl ifconfig.co/country-iso)
 reflector -c ${country} -l 5 --sort rate --save /etc/pacman.d/mirrorlist
-) 2>1 1>/dev/null
+)>/dev/null
 kill $(cat /tmp/running)
 clear
 
@@ -63,7 +63,7 @@ sed -i 's/^#ParallelDownloads = 5/ParallelDownloads = 3/' /etc/pacman.conf
 sed -i '/#\[multilib\]/s/^#//' /etc/pacman.conf
 sed -i '/\[multilib\]/{n;s/^#//;}' /etc/pacman.conf
 pacman -Sy --noconfirm
-) 2>1 1>/dev/null
+)>/dev/null
 kill $(cat /tmp/running)
 clear
 
@@ -82,7 +82,7 @@ echo "127.0.0.1     localhost" > /etc/hosts
 echo "::1           localhost" >> /etc/hosts
 echo "127.0.1.1     $hostname.localdomain $hostname" >> /etc/hosts
 echo "$hostname" > /etc/hostname
-) 2>1 1>/dev/null
+)>/dev/null
 kill $(cat /tmp/running)
 clear
 

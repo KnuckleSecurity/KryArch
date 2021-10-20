@@ -25,7 +25,7 @@ pacman -S --noconfirm pacman-contrib reflector rsync
 rm /etc/pacman.d/mirrorlist
 #Updating mirror list
 reflector -c ${country} -l 5 --sort rate --save /etc/pacman.d/mirrorlist
-) 2>1 1>/dev/null
+)>/dev/null
 kill $(cat /tmp/running) 
 
 clear
@@ -66,7 +66,7 @@ echo "y" | mkfs.ext4 "${DSK}2"
 mount -t ext4 "${DSK}2" /mnt
 mkdir -p /mnt/boot/efi
 mount -t vfat "${DSK}1" /mnt/boot/efi
-) 1>2 2>/dev/null
+)>/dev/null
 kill $(cat /tmp/running) 
 
 clear
@@ -82,7 +82,7 @@ pacstrap /mnt base base-devel linux linux-firmware vim nano sudo archlinux-keyri
 genfstab -U /mnt >> /mnt/etc/fstab
 mv ~/kryarch /mnt/root
 cd /mnt/
-) 1>2 2>/dev/null
+)>/dev/null
 kill $(cat /tmp/running) 
 
 #Entering arch-chroot environment
