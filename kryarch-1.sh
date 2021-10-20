@@ -37,9 +37,9 @@ echo ""
 read -p ">> " DSK
 
 clear
-echo "-------------------------------------------------------"
-echo " Partitioning the disk and installing the linux kernel."
-echo "-------------------------------------------------------"
+echo "-----------------------"
+echo " Partitioning the disk."
+echo "-----------------------"
 ./spinner.sh
 (
 #Zapping disk
@@ -66,20 +66,28 @@ echo "y" | mkfs.ext4 "${DSK}2"
 mount -t ext4 "${DSK}2" /mnt
 mkdir -p /mnt/boot/efi
 mount -t vfat "${DSK}1" /mnt/boot/efi
+) 1>2 2>/dev/null
+kill $(cat /tmp/running) 
 
+clear
 #Installing linux the kernel
+echo "-----------------------------"
+echo " Installing the linux kernel."
+echo "-----------------------------"
+./spinner.sh
+(
 pacstrap /mnt base base-devel linux linux-firmware vim nano sudo archlinux-keyring --noconfirm --needed
 
 #Creating fstab
 genfstab -U /mnt >> /mnt/etc/fstab
-
-mv ~/kryarch /mnt/root
-#Entering arch-chroot environment
 ) 1>2 2>/dev/null
 kill $(cat /tmp/running) 
+mv ~/kryarch /mnt/root
+
+#Entering arch-chroot environment
 clear
 echo "----------------------------------------------------------------------------------------------"
-echo -e " * Entered to the arch-chroot environment. To proceed with the installiation follow those steps.\n 1- cd root/kryarch\n 2- bash kryarch-2.sh"
+echo -e " * Entered to the arch-chroot environment. To proceed with the installiation follow those steps.\n 1 - cd root/kryarch\n 2 - bash kryarch-2.sh"
 echo "----------------------------------------------------------------------------------------------"
 cd /mnt/
 arch-chroot /mnt
