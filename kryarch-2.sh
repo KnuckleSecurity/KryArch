@@ -27,11 +27,6 @@ case $SWP in
         echo '/swapfile none swap sw 0 0' | tee -a /etc/fstab
         swapon -a
         free -m
-        echo "If you can see swap size corresponds to your input, it has been created successfully."
-        ;;
-    2|n|N|No|NO|no)
-        echo "Skipping creating swap..."
-        ;;
 esac
 clear
 
