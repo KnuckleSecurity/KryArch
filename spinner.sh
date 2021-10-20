@@ -1,4 +1,4 @@
-
+export running=$BASHPID
 function spin()
 {
     while [ true ]
