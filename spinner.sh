@@ -1,6 +1,6 @@
-export running=$BASHPID
 function spin()
 {
+    echo $BASHPID > /tmp/running
     while [ true ]
     do
         for i in "$@"

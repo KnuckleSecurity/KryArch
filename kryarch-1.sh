@@ -23,7 +23,7 @@ rm /etc/pacman.d/mirrorlist
 reflector -c ${country} -l 5 --sort rate --save /etc/pacman.d/mirrorlist
 ) 2>1 1>/dev/null
 echo -e "\nDone !"
-kill $running 
+kill $(cat /tmp/running) 
 
 clear
 echo -e "\t* Choose a partition to proceed the insalliation."
