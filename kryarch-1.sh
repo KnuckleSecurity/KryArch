@@ -12,7 +12,7 @@ echo -e "#-> SECTION-1 <-# Disk Partitioning and Installing linux kernel."
 read anykey
 
 clear
-echo -e "Updating mirrors.\n"
+echo -e "Updating mirrors."
 ./spinner.sh
 (
 country=$(curl ifconfig.co/country-iso)
