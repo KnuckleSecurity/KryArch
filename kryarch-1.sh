@@ -7,12 +7,12 @@
 #Website:krygeNNN.github.io
 
 clear
-echo -e "\t* Welcome to KryArch, archlinux installiation script, press any key to start."
-echo -e "\t* #SECTION-1#: Disk Partitioning and Installing linux kernel."
+echo -e "* Welcome to KryArch, archlinux installiation script, press any key to start."
+echo -e "* #SECTION-1#: Disk Partitioning and Installing linux kernel."
 read anykey
 
 clear
-echo -e "~Prepearing for the installiation\n"
+echo -e "#Updating mirrors.\n"
 ./spinner.sh
 (
 country=$(curl ifconfig.co/country-iso)
@@ -22,14 +22,15 @@ rm /etc/pacman.d/mirrorlist
 #Updating mirror list
 reflector -c ${country} -l 5 --sort rate --save /etc/pacman.d/mirrorlist
 ) 2>1 1>/dev/null
-echo -e "\nDone !"
 kill $(cat /tmp/running) 
 
 clear
-echo -e "\t* Choose a partition to proceed the insalliation."
-read DSK
+echo -e "* Choose a partition to proceed the insalliation.\n-- Warning !The partition you choose will be wiped out, choose carefully."
 fdisk -l
+read DSK
 
+./spinner.sh
+(
 #Zapping disk
 sgdisk -Z ${DSK}
 sgdisk -a 2048 -o ${DSK}
@@ -64,3 +65,5 @@ genfstab -U /mnt >> /mnt/etc/fstab
 mv ~/kryarch /mnt/root
 #Entering arch-chroot environment
 arch-chroot /mnt
+) 1>2 2>/dev/null
+kill $(cat /tmp/running) 
