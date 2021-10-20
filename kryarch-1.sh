@@ -66,7 +66,7 @@ echo "y" | mkfs.ext4 "${DSK}2"
 mount -t ext4 "${DSK}2" /mnt
 mkdir -p /mnt/boot/efi
 mount -t vfat "${DSK}1" /mnt/boot/efi
-) >/dev/null
+) 2>/dev/null 1>&2
 kill $(cat /tmp/running) 
 
 clear
@@ -81,7 +81,7 @@ pacstrap /mnt base base-devel linux linux-firmware vim nano sudo archlinux-keyri
 #Creating fstab
 genfstab -U /mnt >> /mnt/etc/fstab
 mv ~/kryarch /mnt/root
-) >/dev/null
+) 2>/dev/null 1>&2
 kill $(cat /tmp/running) 
 
 #Entering arch-chroot environment
