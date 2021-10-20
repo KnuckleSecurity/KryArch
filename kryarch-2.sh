@@ -118,9 +118,9 @@ grub-mkconfig -o /boot/grub/grub.cfg
 clear
 
 
-echo "----------------------------------------------------------"
-echo -e " * Select your CPU manufacturer\n----------------------------------------------------------\n1-AMD\n2-INTEL\n3-Skip"
-echo "----------------------------------------------------------"
+echo "------------------------------"
+echo -e " * Select your CPU manufacturer\n------------------------------\n1-AMD\n2-INTEL\n3-Skip"
+echo "------------------------------"
 sleep 0.1
 read -p ">>" CPU
 case $CPU in
@@ -139,9 +139,9 @@ esac
 clear
 
 
-echo "--------------------------------------------------------------------------"
-echo -e " * Select your GPU manufacturer\n--------------------------------------------------------------------------\n1-AMD or INTEL\n2-NVIDIA\n3-VM\n4-Skip"
-echo "--------------------------------------------------------------------------"
+echo "-------------------------------"
+echo -e " * Select your GPU manufacturer\n-------------------------------\n1-AMD or INTEL\n2-NVIDIA\n3-VM\n4-Skip"
+echo "-------------------------------"
 sleep 0.1
 read -p ">>" GPU
 case $GPU in
@@ -171,9 +171,9 @@ case $GPU in
 esac
 clear
 
-echo "-----------------------"
-echo -e " * Choose your desktop. \n-----------------------\n1-Gnome\n2-Xfce\n3-Plasma\n4-Mate\n5-i3\n6-Awesome\n7-Skip" 
-echo "------------------------"
+echo "----------------------"
+echo -e " * Choose your desktop. \n----------------------\n1-Gnome\n2-Xfce\n3-Plasma\n4-Mate\n5-i3\n6-Awesome\n7-Skip" 
+echo "----------------------"
 read desktop
 
 case $desktop in

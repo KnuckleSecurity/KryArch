@@ -19,6 +19,7 @@ echo  " Updating the mirrors."
 echo  "----------------------"
 country=$(curl ifconfig.co/country-iso)
 timedatectl set-ntp true
+sed -i 's/#Color/Color/' /etc/pacman.conf
 pacman -S --noconfirm pacman-contrib reflector rsync
 #Updating mirror list
 reflector -c ${country} -l 5 --sort rate --save /etc/pacman.d/mirrorlist
