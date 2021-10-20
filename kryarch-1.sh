@@ -25,7 +25,7 @@ pacman -S --noconfirm pacman-contrib reflector rsync
 rm /etc/pacman.d/mirrorlist
 #Updating mirror list
 reflector -c ${country} -l 5 --sort rate --save /etc/pacman.d/mirrorlist
-) 2>&1 1>/dev/null
+) 2>/dev/null 1>/dev/null
 kill $(cat /tmp/running) 
 
 clear
