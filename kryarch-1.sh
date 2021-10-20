@@ -27,7 +27,8 @@ kill $(cat /tmp/running)
 clear
 echo -e "* Choose a partition to proceed the insalliation.\n-- Warning !The partition you choose will be wiped out, choose carefully."
 fdisk -l
-read -ep "\n>> " DSK
+echo -e "\n"
+read -p ">> " DSK
 
 ./spinner.sh
 (
