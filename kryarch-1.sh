@@ -25,7 +25,7 @@ pacman -S --noconfirm pacman-contrib reflector rsync
 rm /etc/pacman.d/mirrorlist
 #Updating mirror list
 reflector -c ${country} -l 5 --sort rate --save /etc/pacman.d/mirrorlist
-)>/dev/null
+) >/dev/null
 kill $(cat /tmp/running) 
 
 clear
@@ -66,7 +66,7 @@ echo "y" | mkfs.ext4 "${DSK}2"
 mount -t ext4 "${DSK}2" /mnt
 mkdir -p /mnt/boot/efi
 mount -t vfat "${DSK}1" /mnt/boot/efi
-)>/dev/null
+) >/dev/null
 kill $(cat /tmp/running) 
 
 clear
@@ -81,8 +81,7 @@ pacstrap /mnt base base-devel linux linux-firmware vim nano sudo archlinux-keyri
 #Creating fstab
 genfstab -U /mnt >> /mnt/etc/fstab
 mv ~/kryarch /mnt/root
-cd /mnt/
-)>/dev/null
+) >/dev/null
 kill $(cat /tmp/running) 
 
 #Entering arch-chroot environment
@@ -90,4 +89,5 @@ clear
 echo "----------------------------------------------------------------------------------------------"
 echo -e " * Entered to the arch-chroot environment. To proceed with the installiation follow those steps.\n 1 - cd root/kryarch\n 2 - bash kryarch-2.sh"
 echo "----------------------------------------------------------------------------------------------"
+cd /mnt
 arch-chroot /mnt
