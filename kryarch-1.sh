@@ -17,7 +17,7 @@ clear
 echo  "----------------------"
 echo  " Updating the mirrors."
 echo  "----------------------"
-./spinner.sh
+./spinner.sh &
 (
 country=$(curl ifconfig.co/country-iso)
 timedatectl set-ntp true
@@ -26,7 +26,7 @@ rm /etc/pacman.d/mirrorlist
 #Updating mirror list
 reflector -c ${country} -l 5 --sort rate --save /etc/pacman.d/mirrorlist
 ) 2>/dev/null 1>&2
-kill $(cat /tmp/running) 
+kill %1 
 
 clear
 echo  "----------------------------------------------------------------------"
@@ -40,7 +40,7 @@ clear
 echo "-----------------------"
 echo " Partitioning the disk."
 echo "-----------------------"
-./spinner.sh
+./spinner.sh &
 (
 #Zapping disk
 sgdisk -Z ${DSK}
@@ -67,21 +67,21 @@ mount -t ext4 "${DSK}2" /mnt
 mkdir -p /mnt/boot/efi
 mount -t vfat "${DSK}1" /mnt/boot/efi
 ) 2>/dev/null 1>&2
-kill $(cat /tmp/running) 
+kill %1 
 
 clear
 #Installing linux the kernel
 echo "-----------------------------"
 echo " Installing the linux kernel."
 echo "-----------------------------"
-./spinner.sh
+./spinner.sh &
 (
 pacstrap /mnt base base-devel linux linux-firmware vim nano sudo archlinux-keyring --noconfirm --needed
 
 #Creating fstab
 genfstab -U /mnt >> /mnt/etc/fstab
 ) 2>/dev/null 1>&2
-kill $(cat /tmp/running) 
+kill %1 
 
 #Entering arch-chroot environment
 clear

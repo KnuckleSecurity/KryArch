@@ -10,8 +10,5 @@ function spin()
         done
     done
 }
-
 spinner1=( ~Running... ~rUnning... ~ruNning... ~runNing... ~runnIng... ~runniNg... ~runninG... )
-
-spin ${spinner1[@]} &
-sleep 3
+spin ${spinner1[@]}
