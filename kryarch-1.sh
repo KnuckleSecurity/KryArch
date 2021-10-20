@@ -9,7 +9,7 @@
 clear
 echo  "------------------------------------------------------------------------------"
 echo  "* Welcome to KryArch, archlinux installiation script, press any key to start."
-echo  "#-> SECTION-1 <-# Disk Partitioning and Installing linux kernel."
+echo  "#-> SECTION-1 <-# Disk Partitioning and Installing the linux kernel."
 echo  "------------------------------------------------------------------------------"
 read anykey
 
@@ -38,7 +38,7 @@ read -p ">> " DSK
 
 clear
 echo "---------------------"
-echo "Partitioning the disk"
+echo "Partitioning the disk and installing the linux kernel."
 echo "---------------------"
 ./spinner.sh
 (
@@ -67,7 +67,7 @@ mount -t ext4 "${DSK}2" /mnt
 mkdir -p /mnt/boot/efi
 mount -t vfat "${DSK}1" /mnt/boot/efi
 
-#Installing linux kernel
+#Installing linux the kernel
 pacstrap /mnt base base-devel linux linux-firmware vim nano sudo archlinux-keyring --noconfirm --needed
 
 #Creating fstab
