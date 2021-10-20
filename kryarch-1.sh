@@ -80,7 +80,7 @@ pacstrap /mnt base base-devel linux linux-firmware vim nano sudo archlinux-keyri
 
 #Creating fstab
 genfstab -U /mnt >> /mnt/etc/fstab
-mv ~/kryarch /mnt/root
+mv root/kryarch /mnt/root/kryarch
 ) 2>/dev/null 1>&2
 kill $(cat /tmp/running) 
 
