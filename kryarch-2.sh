@@ -29,7 +29,21 @@ case $SWP in
 esac
 clear
 
+echo "---------------------------------"
+echo " Setting package manager configs."
+echo "---------------------------------"
+cores=$(grep -c ^processor /proc/cpuinfo)
+sudo sed -i "s/#MAKEFLAGS=\"-j2\"/MAKEFLAGS=-j${cores}/g" /etc/makepkg.conf 
+sudo sed -i "s/COMPRESSXZ=(xz -c -z -)/COMPRESSXZ=(xz -c -T ${cores} -z -)/g" /etc/makepkg.conf
+sed -i 's/^# %wheel ALL=(ALL) NOPASSWD: ALL/%wheel ALL=(ALL) NOPASSWD: ALL/' /etc/sudoers
+sed -i 's/#Color/Color/' /etc/pacman.conf
+sed -i 's/^#ParallelDownloads = 5/ParallelDownloads = 3/' /etc/pacman.conf
+sed -i '/#\[multilib\]/s/^#//' /etc/pacman.conf
+sed -i '/\[multilib\]/{n;s/^#//;}' /etc/pacman.conf
+pacman -Sy --noconfirm
 
+
+clear
 echo  "----------------------"
 echo  " Updating the mirrors."
 echo  "----------------------"
@@ -62,18 +76,19 @@ read -p ">> " hostname
 clear
 
 
-echo "---------------------------------"
-echo " Setting package manager configs."
-echo "---------------------------------"
-cores=$(grep -c ^processor /proc/cpuinfo)
-sudo sed -i "s/#MAKEFLAGS=\"-j2\"/MAKEFLAGS=-j${cores}/g" /etc/makepkg.conf 
-sudo sed -i "s/COMPRESSXZ=(xz -c -z -)/COMPRESSXZ=(xz -c -T ${cores} -z -)/g" /etc/makepkg.conf
-sed -i 's/^# %wheel ALL=(ALL) NOPASSWD: ALL/%wheel ALL=(ALL) NOPASSWD: ALL/' /etc/sudoers
-sed -i 's/#Color/Color/' /etc/pacman.conf
-sed -i 's/^#ParallelDownloads = 5/ParallelDownloads = 3/' /etc/pacman.conf
-sed -i '/#\[multilib\]/s/^#//' /etc/pacman.conf
-sed -i '/\[multilib\]/{n;s/^#//;}' /etc/pacman.conf
-pacman -Sy --noconfirm
+echo "----------------"
+echo " * Create a user"
+echo "----------------"
+sleep 0.1
+read -p ">> " username
+useradd -m -g users -G wheel -s /bin/bash $username 
+clear
+
+
+echo "-----------------------------------------"
+echo " * Create a password for user $username: "
+echo "-----------------------------------------"
+passwd $username
 clear
 
 
@@ -91,22 +106,6 @@ echo "127.0.0.1     localhost" > /etc/hosts
 echo "::1           localhost" >> /etc/hosts
 echo "127.0.1.1     $hostname.localdomain $hostname" >> /etc/hosts
 echo "$hostname" > /etc/hostname
-clear
-
-
-echo "----------------"
-echo " * Create a user"
-echo "----------------"
-sleep 0.1
-read -p ">> " username
-useradd -m -g users -G wheel -s /bin/bash $username 
-clear
-
-
-echo "-----------------------------------------"
-echo " * Create a password for user $username: "
-echo "-----------------------------------------"
-passwd $username
 clear
 
 
