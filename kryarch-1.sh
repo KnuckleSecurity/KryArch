@@ -6,38 +6,61 @@
 #Author:Burak Baris
 #Website:krygeNNN.github.io
 
+clear
+echo -e "\t* Welcome to KryArch, archlinux installiation script, press any key to start."
+echo -e "\t* #SECTION-1#: Disk Partitioning and Installing linux kernel."
+read anykey
 
+clear
+echo -e "~Prepearing for the installiation\n"
+./spinner.sh
 (
 country=$(curl ifconfig.co/country-iso)
 timedatectl set-ntp true
 pacman -S --noconfirm pacman-contrib reflector rsync
 rm /etc/pacman.d/mirrorlist
-reflector -a 48 -c ${country} -l 20 --sort rate --save /etc/pacman.d/mirrorlist
+#Updating mirror list
+reflector -c ${country} -l 5 --sort rate --save /etc/pacman.d/mirrorlist
+) 2>1 1>/dev/null
+echo -e "\nDone !"
+kill %1 
 
-DISK="/dev/sda"
-sgdisk -Z ${DISK}
-sgdisk -a 2048 -o ${DISK}
+clear
+echo -e "\t* Choose a partition to proceed the insalliation."
+read DSK
+fdisk -l
 
-sgdisk -n 1:1MiB:1000MiB ${DISK}
-sgdisk -n 2:0:0 ${DISK}
+#Zapping disk
+sgdisk -Z ${DSK}
+sgdisk -a 2048 -o ${DSK}
 
-sgdisk -t 1:ef00 ${DISK}  
-sgdisk -t 2:8300 ${DISK}  
+#Partitioning disk size
+sgdisk -n 1:1MiB:1000MiB ${DSK}
+sgdisk -n 2:0:0 ${DSK}
 
-sgdisk -c 1:"uefi" ${DISK}
-sgdisk -c 2:"root" ${DISK}
+#Declaring partition type
+sgdisk -t 1:ef00 ${DSK}  
+sgdisk -t 2:8300 ${DSK}  
 
-mkfs.vfat -F32 "${DISK}1"
-echo "y" | mkfs.ext4 "${DISK}2"
+#Labeling partitions
+sgdisk -c 1:"uefi" ${DSK}
+sgdisk -c 2:"root" ${DSK}
 
-mount -t ext4 "${DISK}2" /mnt
+#Creating file systems
+mkfs.vfat -F32 "${DSK}1"
+echo "y" | mkfs.ext4 "${DSK}2"
+
+#Mounting file systems
+mount -t ext4 "${DSK}2" /mnt
 mkdir -p /mnt/boot/efi
-mount -t vfat "${DISK}1" /mnt/boot/efi
+mount -t vfat "${DSK}1" /mnt/boot/efi
 
+#Installing linux kernel
 pacstrap /mnt base base-devel linux linux-firmware vim nano sudo archlinux-keyring --noconfirm --needed
 
+#Creating fstab
 genfstab -U /mnt >> /mnt/etc/fstab
 
-) | tee kryarch1-logs.txt
 mv ~/kryarch /mnt/root
+#Entering arch-chroot environment
 arch-chroot /mnt
