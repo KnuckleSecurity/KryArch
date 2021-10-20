@@ -30,8 +30,8 @@ kill $(cat /tmp/running)
 
 clear
 echo  "-----------------------------------------------------------------"
-echo -e "* Choose a disk to proceed with partitioning (example /dev/sda).\n-- Warning !The disk you choose will be wiped out, choose carefully.\n"
-echo  "-----------------------------------------------------------------"
+echo -e "* Choose a disk to proceed with partitioning (example /dev/sda).\n-- Warning !The disk you choose will be wiped out, choose carefully."
+echo -e "-----------------------------------------------------------------\n"
 fdisk -l
 echo ""
 read -p ">> " DSK
