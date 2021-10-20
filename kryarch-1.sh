@@ -20,7 +20,6 @@ echo  "----------------------"
 country=$(curl ifconfig.co/country-iso)
 timedatectl set-ntp true
 pacman -S --noconfirm pacman-contrib reflector rsync
-rm /etc/pacman.d/mirrorlist
 #Updating mirror list
 reflector -c ${country} -l 5 --sort rate --save /etc/pacman.d/mirrorlist
 
@@ -77,5 +76,5 @@ echo "--------------------------------------------------------------------------
 echo -e " * Entered to the arch-chroot environment. To proceed with the installiation follow those steps.\n 1 - cd root/kryarch\n 2 - bash kryarch-2.sh"
 echo "----------------------------------------------------------------------------------------------"
 cd /mnt
-mv ~/kryarch /mnt/root/
+mv ~/kryarch /mnt/root/kryarch
 arch-chroot /mnt
