@@ -7,11 +7,14 @@
 #Website:krygeNNN.github.io
 
 clear
+echo  "------------------------------------------------------------------------------"
 echo  "* Welcome to KryArch, archlinux installiation script, press any key to start."
 echo  "#-> SECTION-1 <-# Disk Partitioning and Installing linux kernel."
+echo  "------------------------------------------------------------------------------"
 read anykey
 
 clear
+echo  "-----------------"
 echo  "Updating mirrors."
 echo  "-----------------"
 ./spinner.sh
@@ -26,11 +29,17 @@ reflector -c ${country} -l 5 --sort rate --save /etc/pacman.d/mirrorlist
 kill $(cat /tmp/running) 
 
 clear
+echo  "----------------------------------------------------------------------"
 echo -e "* Choose a partition to proceed the insalliation.\n-- Warning !The partition you choose will be wiped out, choose carefully.\n"
+echo  "----------------------------------------------------------------------"
 fdisk -l
 echo ""
 read -p ">> " DSK
 
+clear
+echo "---------------------"
+echo "Partitioning the disk"
+echo "---------------------"
 ./spinner.sh
 (
 #Zapping disk
