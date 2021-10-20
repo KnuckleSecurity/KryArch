@@ -25,7 +25,7 @@ reflector -c ${country} -l 5 --sort rate --save /etc/pacman.d/mirrorlist
 kill $(cat /tmp/running) 
 
 clear
-echo -e "* Choose a partition to proceed the insalliation.\n-- Warning !The partition you choose will be wiped out, choose carefully."
+echo -e "* Choose a partition to proceed the insalliation.\n-- Warning !The partition you choose will be wiped out, choose carefully.\n"
 fdisk -l
 echo ""
 read -p ">> " DSK
