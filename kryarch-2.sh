@@ -20,7 +20,7 @@ echo "-------------------------------------------------"
 (
 pacman -S networkmanager dhclient --noconfirm --needed
 systemctl enable NetworkManager
-) 2>/dev/null 1&>2
+) 2>/dev/null 1>$2
 kill $(cat /tmp/running)
 clear
 
