@@ -7,12 +7,13 @@
 #Website:krygeNNN.github.io
 
 clear
-echo -e "* Welcome to KryArch, archlinux installiation script, press any key to start."
-echo -e "#-> SECTION-1 <-# Disk Partitioning and Installing linux kernel."
+echo  "* Welcome to KryArch, archlinux installiation script, press any key to start."
+echo  "#-> SECTION-1 <-# Disk Partitioning and Installing linux kernel."
 read anykey
 
 clear
-echo -e "Updating mirrors."
+echo  "Updating mirrors."
+echo  "-----------------"
 ./spinner.sh
 (
 country=$(curl ifconfig.co/country-iso)
