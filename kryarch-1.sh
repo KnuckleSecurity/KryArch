@@ -7,16 +7,16 @@
 #Website:krygeNNN.github.io
 
 clear
-echo  "------------------------------------------------------------------------------"
-echo  "* Welcome to KryArch, archlinux installiation script, press any key to start."
-echo  "#-> SECTION-1 <-# Disk Partitioning and Installing the linux kernel."
-echo  "------------------------------------------------------------------------------"
+echo  "-------------------------------------------------------------------------------"
+echo  " * Welcome to KryArch, archlinux installiation script, press any key to start."
+echo  " #-> SECTION-1 <-# Disk Partitioning and Installing the linux kernel."
+echo  "-------------------------------------------------------------------------------"
 read anykey
 
 clear
-echo  "---------------------"
-echo  "Updating the mirrors."
-echo  "---------------------"
+echo  "----------------------"
+echo  " Updating the mirrors."
+echo  "----------------------"
 ./spinner.sh
 (
 country=$(curl ifconfig.co/country-iso)
@@ -29,17 +29,17 @@ reflector -c ${country} -l 5 --sort rate --save /etc/pacman.d/mirrorlist
 kill $(cat /tmp/running) 
 
 clear
-echo  "-----------------------------------------------------------------"
-echo -e "* Choose a disk to proceed with partitioning (example /dev/sda).\n-- Warning !The disk you choose will be wiped out, choose carefully."
-echo -e "-----------------------------------------------------------------\n"
+echo  "------------------------------------------------------------------"
+echo -e " * Choose a disk to proceed with partitioning (example /dev/sda).\n -- Warning !The disk you choose will be wiped out, choose carefully."
+echo -e "------------------------------------------------------------------\n"
 fdisk -l
 echo ""
 read -p ">> " DSK
 
 clear
-echo "------------------------------------------------------"
-echo "Partitioning the disk and installing the linux kernel."
-echo "------------------------------------------------------"
+echo "-------------------------------------------------------"
+echo " Partitioning the disk and installing the linux kernel."
+echo "-------------------------------------------------------"
 ./spinner.sh
 (
 #Zapping disk
@@ -79,7 +79,7 @@ mv ~/kryarch /mnt/root
 kill $(cat /tmp/running) 
 clear
 echo "----------------------------------------------------------------------------------------------"
-echo -e "* Entered to the arch-chroot environment. To proceed with the installiation follow those steps.\n1- cd root/kryarch\n2- bash kryarch-2.sh"
+echo -e " * Entered to the arch-chroot environment. To proceed with the installiation follow those steps.\n 1- cd root/kryarch\n 2- bash kryarch-2.sh"
 echo "----------------------------------------------------------------------------------------------"
 cd /mnt/
 arch-chroot /mnt
