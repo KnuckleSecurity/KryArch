@@ -12,7 +12,7 @@ echo -e "#-> SECTION-1 <-# Disk Partitioning and Installing linux kernel."
 read anykey
 
 clear
-echo -e "#Updating mirrors.\n"
+echo -e "Updating mirrors.\n"
 ./spinner.sh
 (
 country=$(curl ifconfig.co/country-iso)
@@ -25,7 +25,7 @@ reflector -c ${country} -l 5 --sort rate --save /etc/pacman.d/mirrorlist
 kill $(cat /tmp/running) 
 
 clear
-echo -e "* Choose a partition to proceed the insalliation.\n-- Warning !The partition you choose will be wiped out, choose carefully."
+echo -e "* Choose a partition to proceed the insalliation.\n-- Warning !The partition you choose will be wiped out, choose carefully.\n"
 fdisk -l
 read DSK
 
