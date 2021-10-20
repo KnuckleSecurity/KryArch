@@ -89,5 +89,5 @@ echo "--------------------------------------------------------------------------
 echo -e " * Entered to the arch-chroot environment. To proceed with the installiation follow those steps.\n 1 - cd root/kryarch\n 2 - bash kryarch-2.sh"
 echo "----------------------------------------------------------------------------------------------"
 cd /mnt
-mv root/kryarch /mnt/root/kryarch
+mv ~/kryarch /mnt/root/
 arch-chroot /mnt
