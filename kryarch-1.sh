@@ -37,9 +37,9 @@ echo ""
 read -p ">> " DSK
 
 clear
-echo "---------------------"
+echo "------------------------------------------------------"
 echo "Partitioning the disk and installing the linux kernel."
-echo "---------------------"
+echo "------------------------------------------------------"
 ./spinner.sh
 (
 #Zapping disk
@@ -75,6 +75,7 @@ genfstab -U /mnt >> /mnt/etc/fstab
 
 mv ~/kryarch /mnt/root
 #Entering arch-chroot environment
-arch-chroot /mnt
 ) 1>2 2>/dev/null
 kill $(cat /tmp/running) 
+echo -e "* Entered to the arch-chroot environment. To proceed with the installiation follow those steps.\n1- cd root/kryarch\n2- bash kryarch-2.sh"
+arch-chroot /mnt
