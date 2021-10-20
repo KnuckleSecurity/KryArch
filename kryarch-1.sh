@@ -80,7 +80,6 @@ pacstrap /mnt base base-devel linux linux-firmware vim nano sudo archlinux-keyri
 
 #Creating fstab
 genfstab -U /mnt >> /mnt/etc/fstab
-mv root/kryarch /mnt/root/kryarch
 ) 2>/dev/null 1>&2
 kill $(cat /tmp/running) 
 
@@ -90,4 +89,5 @@ echo "--------------------------------------------------------------------------
 echo -e " * Entered to the arch-chroot environment. To proceed with the installiation follow those steps.\n 1 - cd root/kryarch\n 2 - bash kryarch-2.sh"
 echo "----------------------------------------------------------------------------------------------"
 cd /mnt
+mv root/kryarch /mnt/root/kryarch
 arch-chroot /mnt
