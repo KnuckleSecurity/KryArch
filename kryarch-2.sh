@@ -19,7 +19,7 @@ echo "-------------------------------------------------"
 read -p ">> " SWP
 case $SWP in
     1|y|Y|Yes|YES|yes)
-        echo "Declare the swap partition size. Minimum 512MB, Maximum 8GB Recommended."
+        echo " * Declare the swap partition size. Minimum 512MB, Maximum 8GB Recommended."
         read -p "Enter as MegaBytes >> " SWPMB
         dd if=/dev/zero of=/swapfile bs=1M count=$SWPMB status=progress 
         chmod 600 /swapfile
