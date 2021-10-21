@@ -6,7 +6,8 @@ Change your keyboard layout to your local with loadkeys, for example -> `loadkey
 ```
 pacman -Sy git
 git clone https://github.com/krygennn/kryarch
-cd kryarch; bash kryarch-1.sh
+cd kryarch
+./kryarch-1.sh
 ```
 ##### Note
 You have to enable EFI.
