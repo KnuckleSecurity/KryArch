@@ -197,12 +197,12 @@ case $desktop in
         systemctl enable lightdm
         ;;
     5|i3|I3)
-        pacman -S i3 --noconfirm
+        pacman -S i3 termite --noconfirm
         pacman -S lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings --noconfirm
         systemctl enable lightdm
         ;;
     6|Awesome|awesome|AWESOME)
-        pacman -S awesome --noconfirm
+        pacman -S awesome termite --noconfirm
         pacman -S lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings --noconfirm
         systemctl enable lightdm
         ;;
