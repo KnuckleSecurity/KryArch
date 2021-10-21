@@ -20,7 +20,7 @@ echo  "----------------------"
 country=$(curl ifconfig.co/country-iso)
 timedatectl set-ntp true
 sed -i 's/#Color/Color/' /etc/pacman.conf
-pacman -S --noconfirm pacman-contrib reflector rsync
+pacman -S --noconfirm pacman-contrib reflector rsync --needed
 #Updating mirror list
 reflector -c ${country} -l 5 --sort rate --save /etc/pacman.d/mirrorlist
 
