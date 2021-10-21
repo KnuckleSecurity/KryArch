@@ -178,7 +178,7 @@ read desktop
 
 case $desktop in
     1|Gnome|gnome|GNOME)
-        pacman -S gnome gnome-tweaks
+        pacman -S gnome gnome-tweaks --noconfirm
         systemctl enable gdm
         ;;
     2|Xfce|xfce|XFCE)
@@ -197,12 +197,12 @@ case $desktop in
         systemctl enable lightdm
         ;;
     5|i3|I3)
-        pacman -S i3
+        pacman -S i3 --noconfirm
         pacman -S lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings --noconfirm
         systemctl enable lightdm
         ;;
     6|Awesome|awesome|AWESOME)
-        pacman -S awesome
+        pacman -S awesome --noconfirm
         pacman -S lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings --noconfirm
         systemctl enable lightdm
         ;;
