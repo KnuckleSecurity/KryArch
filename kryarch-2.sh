@@ -118,9 +118,9 @@ grub-mkconfig -o /boot/grub/grub.cfg
 clear
 
 
-echo "------------------------------"
-echo -e " * Select your CPU manufacturer\n------------------------------\n1-AMD\n2-INTEL\n3-Skip"
-echo "------------------------------"
+echo "-------------------------------"
+echo -e " * Select your CPU manufacturer\n-------------------------------\n1-AMD\n2-INTEL\n3-Skip"
+echo "-------------------------------"
 sleep 0.1
 read -p ">>" CPU
 case $CPU in
