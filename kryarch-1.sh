@@ -30,6 +30,7 @@ echo -e " * Choose a disk to proceed with partitioning (example /dev/sda).\n -- 
 echo -e "----------------------------------------------------------------------\n"
 fdisk -l
 echo ""
+echo  "----------------------------------------------------------------------"
 read -p ">> " DSK
 
 clear
