@@ -211,6 +211,6 @@ case $desktop in
 esac
 clear
 
-echo "----------------------------------------------"
-echo -e "Installiation finished, you can reboot now."
-echo "----------------------------------------------"
+echo "-------------------------------------------"
+echo "Installiation finished, you can reboot now."
+echo "-------------------------------------------"
