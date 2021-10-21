@@ -9,3 +9,6 @@ ArchLinux Install Script
 3-`git clone https://github.com/krygennn/kryarch`
 <br>
 4-`cd kryarch; bash kryarch-1.sh`
+
+##### Note
+You have to enable EFI.
