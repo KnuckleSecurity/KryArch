@@ -61,24 +61,24 @@ systemctl enable NetworkManager
 clear
 
 
-echo "-----------------------------"
-echo " * Create a password for root"
-echo "-----------------------------"
+echo "------------------------------"
+echo " * Create a password for root."
+echo "------------------------------"
 passwd root
 clear
 
 
-echo "-----------------------"
-echo " * Specify the hostname"
-echo "-----------------------"
+echo "------------------------"
+echo " * Specify the hostname."
+echo "------------------------"
 sleep 0.1
 read -p ">> " hostname
 clear
 
 
-echo "----------------"
-echo " * Create a user"
-echo "----------------"
+echo "-----------------"
+echo " * Create a user."
+echo "-----------------"
 sleep 0.1
 read -p ">> " username
 useradd -m -g users -G wheel -s /bin/bash $username 
@@ -109,9 +109,9 @@ echo "$hostname" > /etc/hostname
 clear
 
 
-echo "--------------------------------------------"
+echo "-------------------------------------------"
 echo " Installing and setting up GRUB bootloader. "
-echo "--------------------------------------------"
+echo "-------------------------------------------"
 pacman -Sy grub efibootmgr dosfstools os-prober mtools --noconfirm --needed
 grub-install --target=x86_64-efi --bootloader-id=grub_uefi --recheck
 grub-mkconfig -o /boot/grub/grub.cfg
