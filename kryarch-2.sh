@@ -47,7 +47,7 @@ clear
 echo  "----------------------"
 echo  " Updating the mirrors."
 echo  "----------------------"
-pacman -S --noconfirm pacman-contrib curl reflector rsync
+pacman -S --noconfirm pacman-contrib curl reflector rsync --needed
 country=$(curl ifconfig.co/country-iso)
 reflector -c ${country} -l 5 --sort rate --save /etc/pacman.d/mirrorlist
 clear
@@ -112,7 +112,7 @@ clear
 echo "--------------------------------------------"
 echo " Installing and setting up GRUB bootloader. "
 echo "--------------------------------------------"
-pacman -Sy grub efibootmgr dosfstools os-prober mtools --noconfirm
+pacman -Sy grub efibootmgr dosfstools os-prober mtools --noconfirm --needed
 grub-install --target=x86_64-efi --bootloader-id=grub_uefi --recheck
 grub-mkconfig -o /boot/grub/grub.cfg
 clear
