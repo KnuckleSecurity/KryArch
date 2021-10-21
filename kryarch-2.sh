@@ -188,7 +188,7 @@ case $desktop in
         systemctl enable lightdm
         ;;
     3|Plasma|plasma|PLASMA)
-        pacman -S plasma-meta --noconfirm 
+        pacman -S plasma-meta konsole dolphin --noconfirm 
         pacman -S sddm --needed --noconfirm 
         systemctl enable sddm
         ;;
