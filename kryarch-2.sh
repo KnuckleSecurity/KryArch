@@ -5,6 +5,7 @@
 #
 #Author:Burak Baris
 #Website:krygeNNN.github.io
+
 clear
 echo  "------------------------------------------------------------------------------"
 echo  " * Welcome to KryArch, archlinux installiation script, press any key to start."
@@ -72,7 +73,7 @@ echo "------------------------"
 echo " * Specify the hostname."
 echo "------------------------"
 sleep 0.1
-read -p ">> " hostname
+read -p "Hostname >> " hostname
 clear
 
 
@@ -80,7 +81,7 @@ echo "-----------------"
 echo " * Create a user."
 echo "-----------------"
 sleep 0.1
-read -p ">> " username
+read -p "Username >> " username
 useradd -m -g users -G wheel -s /bin/bash $username 
 clear
 
@@ -197,12 +198,12 @@ case $desktop in
         systemctl enable lightdm
         ;;
     5|i3|I3)
-        pacman -S i3 termite --noconfirm
+        pacman -S i3 terminator --noconfirm
         pacman -S lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings --noconfirm
         systemctl enable lightdm
         ;;
     6|Awesome|awesome|AWESOME)
-        pacman -S awesome termite --noconfirm
+        pacman -S awesome terminator --noconfirm
         pacman -S lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings --noconfirm
         systemctl enable lightdm
         ;;
