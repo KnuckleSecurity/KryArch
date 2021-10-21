@@ -1,7 +1,7 @@
 # KryArch
 ArchLinux Install Script
 
-## Istalliation
+## Installiation
 1-Change your keyboard layout to your local with loadkeys, for example -> `loadkeys us`
 <br>
 2-`pacman -Sy git`
