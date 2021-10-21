@@ -85,9 +85,9 @@ useradd -m -g users -G wheel -s /bin/bash $username
 clear
 
 
-echo "-----------------------------------------"
+echo "----------------------------------------"
 echo " * Create a password for user $username: "
-echo "-----------------------------------------"
+echo "----------------------------------------"
 passwd $username
 clear
 
