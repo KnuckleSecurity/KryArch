@@ -215,3 +215,4 @@ clear
 echo "-------------------------------------------"
 echo "Installiation finished, you can reboot now."
 echo "-------------------------------------------"
+exit
