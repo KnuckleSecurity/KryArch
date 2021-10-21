@@ -6,7 +6,6 @@
 #Author:Burak Baris
 #Website:krygeNNN.github.io
 
-(
 clear
 echo  "------------------------------------------------------------------------------"
 echo  " * Welcome to KryArch, archlinux installiation script, press any key to start."
@@ -216,4 +215,3 @@ clear
 echo "-------------------------------------------"
 echo "Installiation finished, you can reboot now."
 echo "-------------------------------------------"
-) 2>
