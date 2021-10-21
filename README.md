@@ -2,7 +2,7 @@
 ArchLinux Install Script
 
 ## Installiation
-*Change your keyboard layout to your local with loadkeys, for example -> `loadkeys us`
+Change your keyboard layout to your local with loadkeys, for example -> `loadkeys us`
 ```
 pacman -Sy git
 git clone https://github.com/krygennn/kryarch
