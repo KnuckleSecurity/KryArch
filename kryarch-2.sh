@@ -6,6 +6,7 @@
 #Author:Burak Baris
 #Website:krygeNNN.github.io
 
+(
 clear
 echo  "------------------------------------------------------------------------------"
 echo  " * Welcome to KryArch, archlinux installiation script, press any key to start."
@@ -198,12 +199,12 @@ case $desktop in
         systemctl enable lightdm
         ;;
     5|i3|I3)
-        pacman -S i3 terminator --noconfirm
+        pacman -S i3 xterm --noconfirm
         pacman -S lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings --noconfirm
         systemctl enable lightdm
         ;;
     6|Awesome|awesome|AWESOME)
-        pacman -S awesome terminator --noconfirm
+        pacman -S awesome xterm --noconfirm
         pacman -S lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings --noconfirm
         systemctl enable lightdm
         ;;
@@ -215,4 +216,4 @@ clear
 echo "-------------------------------------------"
 echo "Installiation finished, you can reboot now."
 echo "-------------------------------------------"
-exit
+) 2>
