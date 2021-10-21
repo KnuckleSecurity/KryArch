@@ -74,7 +74,7 @@ genfstab -U /mnt >> /mnt/etc/fstab
 #Entering arch-chroot environment
 clear
 echo "----------------------------------------------------------------------------------------------"
-echo -e " * Entered to the arch-chroot environment. To proceed with the installiation follow those steps.\n 1 - cd root/kryarch\n 2 - bash kryarch-2.sh"
+echo -e " * Entering to the arch-chroot environment. To proceed with the installiation follow those steps.\n 1 - cd root/kryarch\n 2 - bash kryarch-2.sh"
 echo "----------------------------------------------------------------------------------------------"
 cd /mnt
 mv ~/kryarch /mnt/root/kryarch
