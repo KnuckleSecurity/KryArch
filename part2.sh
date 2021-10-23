@@ -154,6 +154,7 @@ case $GPU in
   5)
     pacman -S virtualbox-guest-utils xf86-video-vmware xorg-server --noconfirm
     
+    bash ~/KryArch/banner.sh
     echo "-----------------------------------"
     echo " * Are you using VirtualBox - y/N ?"
     echo "-----------------------------------"
