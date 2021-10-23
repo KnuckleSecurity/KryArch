@@ -2,12 +2,11 @@
 ArchLinux Install Script
 
 ## Installiation
-Change your keyboard layout to your local with loadkeys, for example -> `loadkeys us`
 ```
 pacman -Sy git
-git clone https://github.com/krygennn/kryarch
+git clone https://github.com/krygeNNN/KryArch
 cd kryarch
-./kryarch-1.sh
+./kryarch.sh
 ```
 ##### Note
 You have to enable EFI.

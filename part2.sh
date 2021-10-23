@@ -114,14 +114,14 @@ bash ~/KryArch/banner.sh
 CPU=$(lscpu | awk '/Vendor ID:/ {print $3}')
 case $CPU in
 
-  1|AMD|amd|Amd)
+  AuthenticAMD)
     echo "-------------------------------"
     echo -e " * Installing AMD microcode."
     echo "-------------------------------"
     pacman -S amd-ucode --noconfirm 
     ;;
 
-  2|INTEL|intel|Intel)
+  GenuineIntel)
     echo "---------------------------------"
     echo -e " * Installing INTEL microcode."
     echo "---------------------------------"
