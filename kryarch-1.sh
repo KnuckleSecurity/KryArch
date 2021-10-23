@@ -106,4 +106,4 @@ pacstrap /mnt base base-devel linux linux-firmware vim nano sudo archlinux-keyri
 genfstab -U /mnt >> /mnt/etc/fstab
 
 #Entering arch-chroot environment
-cp ~/KryArch /mnt/root/KryArch
+cp -r ~/KryArch /mnt/root/KryArch
