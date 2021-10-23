@@ -82,13 +82,13 @@ sgdisk -c 2:"root" ${DSK}
 #Mounting file systems
 if [[ ${DSK} =~ "nvme" ]]; then
     mkfs.vfat -F32 "${DSK}p1"
-    mkfs.ext4 "${DSK}p2"
+    echo "y" | mkfs.ext4 "${DSK}p2"
     mount -t ext4 "${DSK}p2" /mnt
     mkdir -p /mnt/boot/efi
     mount -t vfat "${DSK}p1" /mnt/boot/efi
 else
     mkfs.vfat -F32 "${DSK}1"
-    mkfs.ext4 "${DSK}2"
+    echo "y" | mkfs.ext4 "${DSK}2"
     mount -t ext4 "${DSK}2" /mnt
     mkdir -p /mnt/boot/efi
     mount -t vfat "${DSK}1" /mnt/boot/efi
