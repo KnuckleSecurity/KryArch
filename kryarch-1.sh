@@ -40,7 +40,6 @@ do
     read -p ">> " DSK
     if [[ ${disk_array[$DSK]} ]]     
     then 
-        echo "need to break"
         break
     else
         echo "!! There is no device found named as '${DSK}', try again."
