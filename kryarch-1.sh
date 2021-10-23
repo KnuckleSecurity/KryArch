@@ -5,7 +5,7 @@
 #
 #Author:Burak Baris
 #Website:krygeNNN.github.io
-setfont ter-v22b
+setfont ter-v20b
 clear
 echo " ██╗  ██╗██████╗ ██╗   ██╗ █████╗ ██████╗  ██████╗██╗  ██╗"
 echo " ██║ ██╔╝██╔══██╗╚██╗ ██╔╝██╔══██╗██╔══██╗██╔════╝██║  ██║"
