@@ -1,2 +1,2 @@
-bash kryarch-1.sh
-arch-chroot /mnt /root/KryArch/kryarch-2.sh
+bash part1.sh
+arch-chroot /mnt /root/KryArch/part2.sh
