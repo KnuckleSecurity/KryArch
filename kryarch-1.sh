@@ -107,3 +107,4 @@ genfstab -U /mnt >> /mnt/etc/fstab
 
 #Entering arch-chroot environment
 cp -r ~/KryArch /mnt/root/KryArch
+cp /etc/pacman.d/mirrorlist /mnt/etc/pacman.d/mirrorlist

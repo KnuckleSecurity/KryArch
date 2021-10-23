@@ -27,6 +27,7 @@ clear
 echo "---------------------------------"
 echo " Setting package manager configs."
 echo "---------------------------------"
+pacman -Sy --noconfirm pacman-contrib curl reflector rsync --needed
 cores=$(grep -c ^processor /proc/cpuinfo)
 sudo sed -i "s/#MAKEFLAGS=\"-j2\"/MAKEFLAGS=-j${cores}/g" /etc/makepkg.conf 
 sudo sed -i "s/COMPRESSXZ=(xz -c -z -)/COMPRESSXZ=(xz -c -T ${cores} -z -)/g" /etc/makepkg.conf
@@ -36,17 +37,7 @@ sed -i 's/^#ParallelDownloads = 5/ParallelDownloads = 3/' /etc/pacman.conf
 sed -i '/#\[multilib\]/s/^#//' /etc/pacman.conf
 sed -i '/\[multilib\]/{n;s/^#//;}' /etc/pacman.conf
 #'/\[multilib\]/,/Include/s/^#//'
-pacman -Sy --noconfirm
 
-
-clear
-echo  "----------------------"
-echo  " Updating the mirrors."
-echo  "----------------------"
-pacman -S --noconfirm pacman-contrib curl reflector rsync --needed
-country=$(curl ifconfig.co/country-iso)
-reflector -c ${country} -l 5 --sort rate --save /etc/pacman.d/mirrorlist
-clear
 
 
 echo "-------------------------------------------------"
