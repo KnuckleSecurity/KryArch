@@ -20,7 +20,7 @@ reflector -c ${country} -l 5 --sort rate --save /etc/pacman.d/mirrorlist
 
 bash banner.sh
 echo  "----------------------------------------------------------------------"
-echo -e " * Choose a disk to proceed with partitioning (example /dev/sda).\n -- Warning !The disk you choose will be wiped out, choose carefully."
+echo -e " * Choose a disk to proceed with partitioning (example /dev/sda).\n !! Warning !The disk you choose will be wiped out, choose carefully."
 echo -e "----------------------------------------------------------------------\n"
 fdisk -l
 echo ""
@@ -46,7 +46,7 @@ do
     fi
 done
 
-echo "Are you sure you want to proceed? All the data stored in ${DSK} will be erased (Y/N)" 
+echo " * Are you sure you want to proceed? All the data stored in ${DSK} will be erased (Y/N)" 
 read -p ">> " erase
 
 if [[ $erase == "Y" ]] || [[ $erase == "y" ]]; then

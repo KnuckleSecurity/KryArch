@@ -6,14 +6,8 @@
 #Author:Burak Baris
 #Website:krygeNNN.github.io
 
-clear
-echo  "------------------------------------------------------------------------------"
-echo  " * Welcome to KryArch, archlinux installiation script, press any key to start."
-echo  " #-> SECTION-2 <-# Installing and configuring arch linux."
-echo  "------------------------------------------------------------------------------"
-read anykey
-clear
 
+bash banner.sh
 echo "-------------------------------------------------"
 echo " * Do you want to create a swap partition - y/N ?"
 echo "-------------------------------------------------"
