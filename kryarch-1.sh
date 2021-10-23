@@ -20,7 +20,7 @@ reflector -c ${country} -l 5 --sort rate --save /etc/pacman.d/mirrorlist
 
 bash banner.sh
 echo  "----------------------------------------------------------------------"
-echo -e " * Choose a disk to proceed with partitioning (example /dev/sda).\n !! Warning !The disk you choose will be wiped out, choose carefully."
+echo -e " * Choose a disk to proceed with partitioning (example /dev/sda).\n -- Warning !The disk you choose will be wiped out, choose carefully."
 echo -e "----------------------------------------------------------------------\n"
 fdisk -l
 echo ""
@@ -40,13 +40,14 @@ do
     read -p ">> " DSK
     if [[ ${disk_array[$DSK]} ]]     
     then 
+        echo "need to break"
         break
     else
         echo "!! There is no device found named as '${DSK}', try again."
     fi
 done
 
-echo " * Are you sure you want to proceed? All the data stored in ${DSK} will be erased (Y/N)" 
+echo "Are you sure you want to proceed? All the data stored in ${DSK} will be erased (Y/N)" 
 read -p ">> " erase
 
 if [[ $erase == "Y" ]] || [[ $erase == "y" ]]; then
@@ -81,13 +82,13 @@ sgdisk -c 2:"root" ${DSK}
 #Mounting file systems
 if [[ ${DSK} =~ "nvme" ]]; then
     mkfs.vfat -F32 "${DSK}p1"
-    echo "y" | mkfs.ext4 "${DSK}p2"
+    mkfs.ext4 "${DSK}p2"
     mount -t ext4 "${DSK}p2" /mnt
     mkdir -p /mnt/boot/efi
     mount -t vfat "${DSK}p1" /mnt/boot/efi
 else
     mkfs.vfat -F32 "${DSK}1"
-    echo "y" | mkfs.ext4 "${DSK}2"
+    mkfs.ext4 "${DSK}2"
     mount -t ext4 "${DSK}2" /mnt
     mkdir -p /mnt/boot/efi
     mount -t vfat "${DSK}1" /mnt/boot/efi
@@ -106,4 +107,3 @@ genfstab -U /mnt >> /mnt/etc/fstab
 
 #Entering arch-chroot environment
 cp -r ~/KryArch /mnt/root/KryArch
-cp /etc/pacman.d/mirrorlist /mnt/etc/pacman.d/mirrorlist
