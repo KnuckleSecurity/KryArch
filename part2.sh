@@ -7,7 +7,7 @@
 #Website:krygeNNN.github.io
 
 
-bash banner.sh
+bash ~/KryArch/banner.sh
 echo "-------------------------------------------------"
 echo " * Do you want to create a swap partition - y/N ?"
 echo "-------------------------------------------------"
@@ -22,8 +22,8 @@ case $SWP in
         echo '/swapfile none swap sw 0 0' | tee -a /etc/fstab
         swapon -a
 esac
-clear
 
+bash ~/KryArch/banner.sh
 echo "---------------------------------"
 echo " Setting package manager configs."
 echo "---------------------------------"
@@ -40,45 +40,49 @@ sed -i '/\[multilib\]/{n;s/^#//;}' /etc/pacman.conf
 
 
 
+bash ~/KryArch/banner.sh
 echo "-------------------------------------------------"
 echo " Downloading and configuring networking packages."
 echo "-------------------------------------------------"
 pacman -S networkmanager dhclient --noconfirm --needed
 systemctl enable NetworkManager
-clear
 
 
+
+bash ~/KryArch/banner.sh
 echo "------------------------------"
 echo " * Create a password for root."
 echo "------------------------------"
 passwd root
-clear
 
 
+
+bash ~/KryArch/banner.sh
 echo "------------------------"
 echo " * Specify the hostname."
 echo "------------------------"
 sleep 0.1
 read -p "Hostname >> " hostname
-clear
 
 
+bash ~/KryArch/banner.sh
 echo "-----------------"
 echo " * Create a user."
 echo "-----------------"
 sleep 0.1
 read -p "Username >> " username
 useradd -m -g users -G wheel -s /bin/bash $username 
-clear
 
 
+
+bash ~/KryArch/banner.sh
 echo "----------------------------------------"
 echo " * Create a password for user $username: "
 echo "----------------------------------------"
 passwd $username
-clear
 
 
+bash ~/KryArch/banner.sh
 echo "-----------------------------------"
 echo " Setting locales and host settings."
 echo "-----------------------------------"
@@ -93,56 +97,63 @@ echo "127.0.0.1     localhost" > /etc/hosts
 echo "::1           localhost" >> /etc/hosts
 echo "127.0.1.1     $hostname.localdomain $hostname" >> /etc/hosts
 echo "$hostname" > /etc/hostname
-clear
 
 
+
+bash ~/KryArch/banner.sh
 echo "-------------------------------------------"
 echo " Installing and setting up GRUB bootloader. "
 echo "-------------------------------------------"
 pacman -Sy grub efibootmgr dosfstools os-prober mtools --noconfirm --needed
 grub-install --target=x86_64-efi --bootloader-id=grub_uefi --recheck
 grub-mkconfig -o /boot/grub/grub.cfg
-clear
 
 
-echo "--------------------------------"
-echo -e " * Select your CPU manufacturer.\n--------------------------------\n1-AMD\n2-INTEL\n3-Skip"
-echo "--------------------------------"
-sleep 0.1
-read -p ">>" CPU
+
+bash ~/KryArch/banner.sh
+CPU=$(lscpu | awk '/Vendor ID:/ {print $3}')
 case $CPU in
 
   1|AMD|amd|Amd)
+    echo "-------------------------------"
+    echo -e " * Installing AMD microcode."
+    echo "-------------------------------"
     pacman -S amd-ucode --noconfirm 
     ;;
 
   2|INTEL|intel|Intel)
+    echo "---------------------------------"
+    echo -e " * Installing INTEL microcode."
+    echo "---------------------------------"
     pacman -S intel-ucode --noconfirm
     ;;
-  *)
-    echo "Skipping..."
-    ;;
 esac
-clear
 
 
+
+bash ~/KryArch/banner.sh
 echo "--------------------------------"
-echo -e " * Select your GPU manufacturer.\n--------------------------------\n1-AMD or INTEL\n2-NVIDIA\n3-VM\n4-Skip"
+echo -e " * Select your GPU manufacturer.\n--------------------------------\n1-AMD Radeon\n2-NVIDIA GeForce\n3-AMD Integrated\n4-Intel Integrated\n5-Virtual Machine\n6-Skip"
 echo "--------------------------------"
 sleep 0.1
 read -p ">>" GPU
 case $GPU in
 
-  1|AMD|amd|Amd|Intel|INTEL|intel)
-    pacman -S mesa xorg-server --noconfirm 
+  1)
+    pacman -S mesa xorg-server xf86-video-amdgpu --noconfirm --needed
     ;;
-
-  2|NVIDIA|nvidia|Nvidia)
-    pacman -S nvidia xorg-server --noconfirm
+  2)
+    pacman -S nvidia nvidia-dkms xorg-server --noconfirm --needed
     ;;
-  3|vm|VM|Vm)
+  3)
+    pacman -S mesa xorg-server xf86-video-ati --noconfirm 
+    ;;
+  4)
+    pacman -S xorg-server libva-intel-driver libvdpau-va-gl lib32-vulkan-intel vulkan-intel libva-intel-driver libva-utils --needed --noconfirm
+    ;;
+  5)
     pacman -S virtualbox-guest-utils xf86-video-vmware xorg-server --noconfirm
-    clear
+    
     echo "-----------------------------------"
     echo " * Are you using VirtualBox - y/N ?"
     echo "-----------------------------------"
@@ -156,8 +167,9 @@ case $GPU in
     echo "Skipping..."
     ;;
 esac
-clear
 
+
+bash ~/KryArch/banner.sh
 echo "-----------------------"
 echo -e " * Choose your desktop. \n-----------------------\n1-Gnome\n2-Xfce\n3-Plasma\n4-Mate\n5-i3\n6-Awesome\n7-Skip" 
 echo "-----------------------"
@@ -196,8 +208,9 @@ case $desktop in
     *)
         ;;
 esac
-clear
 
+
+bash ~/KryArch/banner.sh
 echo "-------------------------------------------"
 echo "Installiation finished, you can reboot now."
 echo "-------------------------------------------"
