@@ -25,6 +25,7 @@ echo -e "----------------------------------------------------------------------\
 fdisk -l
 echo ""
 echo  "----------------------------------------------------------------------"
+
 dsk=$(sudo fdisk -l | grep "Disk /dev" | cut -d " " -f 2 | sed -e "s/://")
 declare -A disk_array
 for disk in $dsk
@@ -36,13 +37,13 @@ done
 
 while true
 do
-    read -p ">> " selected_disk
+    read -p ">> " DSK
     (
-    if [[ ${disk_array[$selected_disk]} ]]     
+    if [[ ${disk_array[$DSK]} ]]     
     then 
         break
     else
-        echo "!! There is no device found named as '${selected_disk}', try again."
+        echo "!! There is no device found named as '${DSK}', try again."
     fi
 ) 2>/dev/null
 done
