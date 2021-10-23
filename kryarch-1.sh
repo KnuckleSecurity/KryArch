@@ -5,15 +5,14 @@
 #
 #Author:Burak Baris
 #Website:krygeNNN.github.io
-
+setfont ter-v22b
 clear
-echo  "-------------------------------------------------------------------------------"
-echo  " * Welcome to KryArch, archlinux installiation script, press any key to start."
-echo  " #-> SECTION-1 <-# Disk Partitioning and Installing the linux kernel."
-echo  "-------------------------------------------------------------------------------"
-read anykey
-
-clear
+echo " ██╗  ██╗██████╗ ██╗   ██╗ █████╗ ██████╗  ██████╗██╗  ██╗"
+echo " ██║ ██╔╝██╔══██╗╚██╗ ██╔╝██╔══██╗██╔══██╗██╔════╝██║  ██║"
+echo " █████╔╝ ██████╔╝ ╚████╔╝ ███████║██████╔╝██║     ███████║"
+echo " ██╔═██╗ ██╔══██╗  ╚██╔╝  ██╔══██║██╔══██╗██║     ██╔══██║"
+echo " ██║  ██╗██║  ██║   ██║   ██║  ██║██║  ██║╚██████╗██║  ██║"
+echo " ╚═╝  ╚═╝╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝"
 echo  "----------------------"
 echo  " Updating the mirrors."
 echo  "----------------------"
@@ -32,11 +31,21 @@ fdisk -l
 echo ""
 echo  "----------------------------------------------------------------------"
 read -p ">> " DSK
+echo "Are you sure you want to proceed? All the data stored in ${DSK} will be erased (Y/N)" 
+read -p ">> " erase
 
-clear
-echo "-----------------------"
-echo " Partitioning the disk."
-echo "-----------------------"
+if [[ $erase == "Y" ]] || [[ $erase == "y" ]]; then
+    clear
+    echo "-----------------------"
+    echo " Partitioning the disk."
+    echo "-----------------------"
+else
+    clear
+    echo "-----------------------------"
+    echo " KryArch has been terminated."
+    echo "-----------------------------"
+    exit
+fi
 #Zapping disk
 sgdisk -Z ${DSK}
 sgdisk -a 2048 -o ${DSK}
@@ -54,13 +63,21 @@ sgdisk -c 1:"uefi" ${DSK}
 sgdisk -c 2:"root" ${DSK}
 
 #Creating file systems
-mkfs.vfat -F32 "${DSK}1"
-echo "y" | mkfs.ext4 "${DSK}2"
-
 #Mounting file systems
-mount -t ext4 "${DSK}2" /mnt
-mkdir -p /mnt/boot/efi
-mount -t vfat "${DSK}1" /mnt/boot/efi
+if [[ ${DSK} =~ "nvme" ]]; then
+    mkfs.vfat -F32 "${DSK}p1"
+    mkfs.ext4 "${DSK}p2"
+    mount -t ext4 "${DSK}p2" /mnt
+    mkdir -p /mnt/boot/efi
+    mount -t vfat "${DSK}p1" /mnt/boot/efi
+else
+    mkfs.vfat -F32 "${DSK}1"
+    mkfs.ext4 "${DSK}2"
+    mount -t ext4 "${DSK}2" /mnt
+    mkdir -p /mnt/boot/efi
+    mount -t vfat "${DSK}1" /mnt/boot/efi
+fi
+
 
 clear
 #Installing linux the kernel
@@ -73,10 +90,4 @@ pacstrap /mnt base base-devel linux linux-firmware vim nano sudo archlinux-keyri
 genfstab -U /mnt >> /mnt/etc/fstab
 
 #Entering arch-chroot environment
-clear
-echo "----------------------------------------------------------------------------------------------"
-echo -e " * Entering to the arch-chroot environment. To proceed with the installiation follow those steps.\n 1 - cd root/kryarch\n 2 - bash kryarch-2.sh"
-echo "----------------------------------------------------------------------------------------------"
-cd /mnt
-mv ~/kryarch /mnt/root/kryarch
-arch-chroot /mnt
+cp ~/KryArch /mnt/root/KryArch

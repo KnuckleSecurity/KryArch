@@ -41,6 +41,7 @@ sed -i 's/#Color/Color/' /etc/pacman.conf
 sed -i 's/^#ParallelDownloads = 5/ParallelDownloads = 3/' /etc/pacman.conf
 sed -i '/#\[multilib\]/s/^#//' /etc/pacman.conf
 sed -i '/\[multilib\]/{n;s/^#//;}' /etc/pacman.conf
+#'/\[multilib\]/,/Include/s/^#//'
 pacman -Sy --noconfirm
 
 
