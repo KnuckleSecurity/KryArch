@@ -6,13 +6,18 @@
 #Author:Burak Baris
 #Website:krygeNNN.github.io
 setfont ter-v20b
-clear
-echo " ██╗  ██╗██████╗ ██╗   ██╗ █████╗ ██████╗  ██████╗██╗  ██╗"
-echo " ██║ ██╔╝██╔══██╗╚██╗ ██╔╝██╔══██╗██╔══██╗██╔════╝██║  ██║"
-echo " █████╔╝ ██████╔╝ ╚████╔╝ ███████║██████╔╝██║     ███████║"
-echo " ██╔═██╗ ██╔══██╗  ╚██╔╝  ██╔══██║██╔══██╗██║     ██╔══██║"
-echo " ██║  ██╗██║  ██║   ██║   ██║  ██║██║  ██║╚██████╗██║  ██║"
-echo " ╚═╝  ╚═╝╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝"
+function banner(){
+    clear
+    echo ""
+    echo " ██╗  ██╗██████╗ ██╗   ██╗ █████╗ ██████╗  ██████╗██╗  ██╗"
+    echo " ██║ ██╔╝██╔══██╗╚██╗ ██╔╝██╔══██╗██╔══██╗██╔════╝██║  ██║"
+    echo " █████╔╝ ██████╔╝ ╚████╔╝ ███████║██████╔╝██║     ███████║"
+    echo " ██╔═██╗ ██╔══██╗  ╚██╔╝  ██╔══██║██╔══██╗██║     ██╔══██║"
+    echo " ██║  ██╗██║  ██║   ██║   ██║  ██║██║  ██║╚██████╗██║  ██║"
+    echo " ╚═╝  ╚═╝╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝"
+}
+
+banner()
 echo  "----------------------"
 echo  " Updating the mirrors."
 echo  "----------------------"
@@ -23,7 +28,7 @@ pacman -S --noconfirm pacman-contrib reflector rsync --needed
 #Updating mirror list
 reflector -c ${country} -l 5 --sort rate --save /etc/pacman.d/mirrorlist
 
-clear
+banner()
 echo  "----------------------------------------------------------------------"
 echo -e " * Choose a disk to proceed with partitioning (example /dev/sda).\n -- Warning !The disk you choose will be wiped out, choose carefully."
 echo -e "----------------------------------------------------------------------\n"
@@ -35,12 +40,12 @@ echo "Are you sure you want to proceed? All the data stored in ${DSK} will be er
 read -p ">> " erase
 
 if [[ $erase == "Y" ]] || [[ $erase == "y" ]]; then
-    clear
+    banner()
     echo "-----------------------"
     echo " Partitioning the disk."
     echo "-----------------------"
 else
-    clear
+    banner()
     echo "-----------------------------"
     echo " KryArch has been terminated."
     echo "-----------------------------"
@@ -79,7 +84,7 @@ else
 fi
 
 
-clear
+banner()
 #Installing linux the kernel
 echo "-----------------------------"
 echo " Installing the linux kernel."
