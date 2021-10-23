@@ -7,7 +7,7 @@
 #Website:krygeNNN.github.io
 
 
-bash /mnt/root/KryArch/banner.sh
+bash banner.sh
 echo "-------------------------------------------------"
 echo " * Do you want to create a swap partition - y/N ?"
 echo "-------------------------------------------------"
@@ -24,6 +24,9 @@ case $SWP in
 esac
 clear
 
+echo "---------------------------------"
+echo " Setting package manager configs."
+echo "---------------------------------"
 cores=$(grep -c ^processor /proc/cpuinfo)
 sudo sed -i "s/#MAKEFLAGS=\"-j2\"/MAKEFLAGS=-j${cores}/g" /etc/makepkg.conf 
 sudo sed -i "s/COMPRESSXZ=(xz -c -z -)/COMPRESSXZ=(xz -c -T ${cores} -z -)/g" /etc/makepkg.conf
@@ -36,6 +39,14 @@ sed -i '/\[multilib\]/{n;s/^#//;}' /etc/pacman.conf
 pacman -Sy --noconfirm
 
 
+clear
+echo  "----------------------"
+echo  " Updating the mirrors."
+echo  "----------------------"
+pacman -S --noconfirm pacman-contrib curl reflector rsync --needed
+country=$(curl ifconfig.co/country-iso)
+reflector -c ${country} -l 5 --sort rate --save /etc/pacman.d/mirrorlist
+clear
 
 
 echo "-------------------------------------------------"
@@ -58,7 +69,6 @@ echo " * Specify the hostname."
 echo "------------------------"
 sleep 0.1
 read -p "Hostname >> " hostname
-echo "hostname='${hostname}'" >> env.conf
 clear
 
 
@@ -67,7 +77,6 @@ echo " * Create a user."
 echo "-----------------"
 sleep 0.1
 read -p "Username >> " username
-echo "username='${username}'" >> env.conf
 useradd -m -g users -G wheel -s /bin/bash $username 
 clear
 
@@ -79,19 +88,26 @@ passwd $username
 clear
 
 
+echo "-----------------------------------"
+echo " Setting locales and host settings."
+echo "-----------------------------------"
 locale-gen
 hwclock --systohc
 timedatectl --no-ask-password set-timezone GB
 timedatectl --no-ask-password set-ntp 1
 localectl --no-ask-password set-keymap us
+hostnamectl --no-ask-password set-hostname $hostname
 sed -i 's/^#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen
+echo "127.0.0.1     localhost" > /etc/hosts
+echo "::1           localhost" >> /etc/hosts
+echo "127.0.1.1     $hostname.localdomain $hostname" >> /etc/hosts
+echo "$hostname" > /etc/hostname
 clear
 
 
 echo "-------------------------------------------"
 echo " Installing and setting up GRUB bootloader. "
 echo "-------------------------------------------"
-
 pacman -Sy grub efibootmgr dosfstools os-prober mtools --noconfirm --needed
 grub-install --target=x86_64-efi --bootloader-id=grub_uefi --recheck
 grub-mkconfig -o /boot/grub/grub.cfg
@@ -150,3 +166,47 @@ case $GPU in
     ;;
 esac
 clear
+
+echo "-----------------------"
+echo -e " * Choose your desktop. \n-----------------------\n1-Gnome\n2-Xfce\n3-Plasma\n4-Mate\n5-i3\n6-Awesome\n7-Skip" 
+echo "-----------------------"
+read desktop
+
+case $desktop in
+    1|Gnome|gnome|GNOME)
+        pacman -S gnome gnome-tweaks --noconfirm
+        systemctl enable gdm
+        ;;
+    2|Xfce|xfce|XFCE)
+        pacman -S xfce4 xfce4-goodies --noconfirm 
+        pacman -S lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings --noconfirm
+        systemctl enable lightdm
+        ;;
+    3|Plasma|plasma|PLASMA)
+        pacman -S plasma-meta konsole dolphin --noconfirm 
+        pacman -S sddm --needed --noconfirm 
+        systemctl enable sddm
+        ;;
+    4|Mate|mate|MATE)
+        pacman -S mate mate-extra
+        pacman -S lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings --noconfirm
+        systemctl enable lightdm
+        ;;
+    5|i3|I3)
+        pacman -S i3 xterm --noconfirm
+        pacman -S lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings --noconfirm
+        systemctl enable lightdm
+        ;;
+    6|Awesome|awesome|AWESOME)
+        pacman -S awesome xterm --noconfirm
+        pacman -S lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings --noconfirm
+        systemctl enable lightdm
+        ;;
+    *)
+        ;;
+esac
+clear
+
+echo "-------------------------------------------"
+echo "Installiation finished, you can reboot now."
+echo "-------------------------------------------"
