@@ -10,7 +10,6 @@ done
 while true
 do
     read -p ">> " selected_disk
-    (
     if [[ ${disk_array[$selected_disk]} ]]     
     then 
         echo "exists"
@@ -18,6 +17,5 @@ do
     else
         echo "!! There is no device found named as '${selected_disk}', try again."
     fi
-) 2>/dev/null
 done
 

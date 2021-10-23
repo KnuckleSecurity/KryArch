@@ -38,7 +38,6 @@ done
 while true
 do
     read -p ">> " DSK
-    (
     if [[ ${disk_array[$DSK]} ]]     
     then 
         echo "need to break"
@@ -46,7 +45,6 @@ do
     else
         echo "!! There is no device found named as '${DSK}', try again."
     fi
-) 2>/dev/null
 done
 
 echo "Are you sure you want to proceed? All the data stored in ${DSK} will be erased (Y/N)" 
