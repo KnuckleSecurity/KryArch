@@ -13,7 +13,7 @@ cd KryArch
 ./kryarch.sh
 ```
 ##### Note
-You have to enable EFI.
+You have to enable UEFI.
 <br>
 ### Images
 KryArch KDE Plasma setup
