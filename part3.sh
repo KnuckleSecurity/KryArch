@@ -13,12 +13,12 @@ bash ~/KryArch/banner.sh
 echo "---------------------------------------------"
 echo " * Setting up KDE Plasma desktop environment."
 echo "---------------------------------------------"
-yay -S terminator firefox zsh fish fisher fzf konsave sddm-nordic-theme-git kvantum-theme-nordic-git kvantum-qt5 --noconfirm --needed
+yay -S firefox zsh fish fisher fzf konsave sddm-nordic-theme-git kvantum-theme-nordic-git kvantum-qt5 --noconfirm --needed
 cd ~/KryArch 
 mkdir -p ~/.config/terminator
 mkdir -p ~/.config/fish/functions
 mkdir -p ~/.local/share/kxmlgui5
-mkdir -p ~/.local/share/icons/Blue-Zafiro-Plus/apps/scalable/arch-ico.svg
+mkdir -p ~/.local/share/icons/Blue-Zafiro-Plus/apps/scalable
 cp misc/config ~/.config/terminator/config
 cp misc/fish_prompt.fish ~/.config/fish/functions/fish_prompt.fish
 cp misc/fish_variables ~/.config/fish/fish_variables
