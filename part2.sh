@@ -172,9 +172,13 @@ case $desktop in
         systemctl enable lightdm
         ;;
     3|Plasma|plasma|PLASMA)
-        pacman -S plasma-meta konsole dolphin --noconfirm 
+        pacman -S plasma-meta terminator dolphin --noconfirm 
         pacman -S sddm --needed --noconfirm 
         systemctl enable sddm
+        echo "[Theme]" > /etc/sddm.conf
+        echo "Current=Nordic" >> /etc/sddm.conf
+        cd /home/$username
+        sudo /usr/bin/runuser -u $username -- part3.sh
         ;;
     4|Mate|mate|MATE)
         pacman -S mate mate-extra
@@ -194,7 +198,6 @@ case $desktop in
     *)
         ;;
 esac
-
 
 bash ~/KryArch/banner.sh
 echo "-------------------------------------------"

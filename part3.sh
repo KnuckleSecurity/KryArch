@@ -11,7 +11,3 @@ cp finland_forest_lake-wallpaper-1920x1080.jpg ~/Pictures
 cp finland_forest_lake-wallpaper-1920x1080.jpg /usr/share/sddm/themes/Nordic/assets/bg.jpg
 cp finland_forest_lake-wallpaper-1920x1080.jpg /usr/share/wallpapers/Next/contents/images/1920x1080.png
 cp misc/image2vector.svg ~/Pictures
-
-sudo cat <<EOF >/etc/sddm.conf
-[Theme]
-Current=Nordic
