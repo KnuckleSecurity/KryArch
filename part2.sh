@@ -143,7 +143,7 @@ case $GPU in
     
     bash ~/KryArch/banner.sh
     echo "-----------------------------------"
-    echo " * Are you using VirtualBox - y/N ?"
+    echo " * Are you using VirtualBox - Y/N ?"
     echo "-----------------------------------"
     read -p ">> " inpt
     if [[ $inpt == "y" ]]
