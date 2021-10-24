@@ -17,6 +17,7 @@ You have to enable EFI.
 <br>
 ### Images
 Default KDE Plasma setup
+<br>
 ![Desktop View](readme.d/kryarch.png)
 ![Desktop View](readme.d/kryarch2.png)
 ![Desktop View](readme.d/kryarch3.png)
