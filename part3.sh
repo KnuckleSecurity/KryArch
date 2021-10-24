@@ -1,10 +1,13 @@
 sudo pacman -Sy git
+cd ~
 git clone https://aur.archlinux.org/yay-bin.git
-cd yay-bin
-makepkg -si
-yay -S terminator firefox zsh fish konsave
+cd ~
+cd ~/yay-bin
+makepkg -si --noconfirm
+yay -S terminator firefox zsh fish konsave --noconfirm
 konsave -i kryarch-one.knsv
 konsave -a kryarch-one
+cd ~/KryArch
 cp misc/config ~/.config/terminator/config
 cp misc/fish_prompt.fish ~/.config/fish/functions/fish_prompt.fish
 cp finland_forest_lake-wallpaper-1920x1080.jpg ~/Pictures
