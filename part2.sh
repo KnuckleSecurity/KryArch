@@ -73,7 +73,7 @@ echo " * Create a user."
 echo "-----------------"
 sleep 0.1
 read -p "Username >> " username
-echo "username=${username}" > username.conf
+echo "username=${username}" > envs.conf
 useradd -m -g users -G wheel -s /bin/bash $username 
 
 bash ~/KryArch/banner.sh
@@ -176,6 +176,9 @@ case $desktop in
         pacman -S plasma-meta terminator dolphin --noconfirm 
         pacman -S sddm --needed --noconfirm 
         systemctl enable sddm
+        echo "[Theme]" > /etc/sddm.conf
+        echo "Current=Nordic" > /etc/sddm.conf
+        echo "Plasma=true" >> envs.conf
        ;;
     4|Mate|mate|MATE)
         pacman -S mate mate-extra
