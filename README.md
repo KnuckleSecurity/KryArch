@@ -16,7 +16,7 @@ cd KryArch
 You have to enable EFI.
 <br>
 ### Images
-Default KDE Plasma setup
+KryArch KDE Plasma setup
 <br>
 <img src="https://i.hizliresim.com/a13zp43.png" />
 <img src="https://i.hizliresim.com/j95m0p0.png" />
