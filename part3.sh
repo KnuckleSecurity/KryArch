@@ -3,12 +3,12 @@ bash ~/KryArch/banner.sh
 echo "-----------------------------"
 echo " * Installing YAY Aur helper."
 echo "-----------------------------"
-sudo pacman -Sy git --noconfirm
+sudo pacman -Sy git --noconfirm --needed
 cd ~
 git clone https://aur.archlinux.org/yay-bin.git
 cd ~
 cd ~/yay-bin
-makepkg -si --noconfirm
+makepkg -si --noconfirm 
 bash ~/KryArch/banner.sh
 echo "---------------------------------------------"
 echo " * Setting up KDE Plasma desktop environment."
