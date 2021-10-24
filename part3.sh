@@ -1,8 +1,8 @@
 
 bash ~/KryArch/banner.sh
-echo "-----------------------------"
-echo " * Installing YAY Aur helper."
-echo "-----------------------------"
+echo "---------------------------"
+echo " Installing YAY Aur helper."
+echo "---------------------------"
 sudo pacman -Sy git --noconfirm --needed
 cd ~
 git clone https://aur.archlinux.org/yay-bin.git
@@ -10,9 +10,9 @@ cd ~
 cd ~/yay-bin
 makepkg -si --noconfirm 
 bash ~/KryArch/banner.sh
-echo "---------------------------------------------"
-echo " * Setting up KDE Plasma desktop environment."
-echo "---------------------------------------------"
+echo "-------------------------------------------"
+echo " Setting up KDE Plasma desktop environment."
+echo "-------------------------------------------"
 yay -S firefox zsh fish fisher fzf konsave sddm-nordic-theme-git kvantum-theme-nordic-git kvantum-qt5 --noconfirm --needed
 cd ~/KryArch 
 mkdir -p ~/.config/terminator
@@ -30,6 +30,10 @@ sudo cp misc/wallpaper.png /usr/share/sddm/themes/Nordic/assets/bg.jpg
 sudo rm -rf /usr/share/wallpapers/Next/contents/images/*
 sudo cp misc/wallpaper.png /usr/share/wallpapers/Next/contents/images/1920x1080.png
 echo "exec fish" > ~/.zshrc
+bash ~/KryArch/banner.sh
+echo "---------------------------"
+echo "Type in your user password."
+echo "---------------------------"
 chsh -s /usr/bin/zsh $(whoami)
 zsh
 fisher install jethrokuan/fzf
