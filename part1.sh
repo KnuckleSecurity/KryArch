@@ -37,6 +37,7 @@ done
 
 while true
 do
+    echo "--"
     read -p ">> " DSK
     if [[ ${disk_array[$DSK]} ]]     
     then 
