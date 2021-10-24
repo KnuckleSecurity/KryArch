@@ -37,7 +37,7 @@ echo "-------------------------------------"
 chsh -s /usr/bin/zsh $(whoami)
 echo "fisher install jethrokuan/fzf" | fish
 bash ~/KryArch/banner.sh
-echo "---------------------------------------------------------------------------------------------------------------"
-echo " * Installiaton has been completed. You can remove installiation media now and Reboot, thanks for using KryArch"
-echo "---------------------------------------------------------------------------------------------------------------"
+echo "--------------------------------------------------"
+echo -e " Installiaton has been completed.\n You can remove installiation media now and Reboot.\n Thanks for using KryArch"
+echo "--------------------------------------------------"
 
