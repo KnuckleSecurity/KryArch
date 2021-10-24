@@ -5,10 +5,9 @@ cd ~
 cd ~/yay-bin
 makepkg -si --noconfirm
 yay -S terminator firefox zsh fish konsave sddm-nordic-theme-git --noconfirm --needed
-konsave -i ~/kryarch-one.knsv
-konsave -a kryarch-one
-cd ~/KryArch
-mkdir -p ~/.config/terminator
+konsave -i ~/kryarch-kde.knsv
+konsave -a kryarch-kde
+cd ~/KryArch mkdir -p ~/.config/terminator
 mkdir -p ~/.config/fish/functions
 mkdir -p ~/.local/share/kxmlgui5
 cp misc/config ~/.config/terminator/config
