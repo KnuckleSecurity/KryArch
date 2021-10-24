@@ -220,6 +220,7 @@ case $desktop in
             *)
                 ;;
         esac
+        ;;
     *)
         ;;
-esac
+esacC
