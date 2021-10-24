@@ -159,46 +159,67 @@ esac
 
 bash ~/KryArch/banner.sh
 echo "-----------------------"
-echo -e " * Choose your desktop. \n-----------------------\n1-Gnome\n2-Xfce\n3-Plasma - (Supported)\n4-Mate\n5-i3\n6-Awesome\n7-Skip" 
+echo -e " * Choose your desktop. \n-----------------------\n1-Plasma -->> Recommended and Supported\n2-Other" 
 echo "-----------------------"
 read desktop
 
-case $desktop in
-    1|Gnome|gnome|GNOME)
-        pacman -S gnome gnome-tweaks --noconfirm
-        systemctl enable gdm
-        ;;
-    2|Xfce|xfce|XFCE)
-        pacman -S xfce4 xfce4-goodies --noconfirm 
-        pacman -S lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings --noconfirm
-        systemctl enable lightdm
-        ;;
-    3|Plasma|plasma|PLASMA)
+case
+    1|Plasma|plasma|PLASMA)
         pacman -S plasma-meta terminator dolphin --noconfirm 
         pacman -S sddm --needed --noconfirm 
         systemctl enable sddm
         echo "[Theme]" > /etc/sddm.conf
-        echo "Current=Nordic" > /etc/sddm.conf
+        echo "Current=Nordic" >> /etc/sddm.conf
         echo "plasma=true" >> ~/KryArch/envs.conf
+        cp -R /root/KryArch /home/$username/KryArch
+        chown -R $username:users /home/$username/KryArch
        ;;
-    4|Mate|mate|MATE)
-        pacman -S mate mate-extra
-        pacman -S lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings --noconfirm
-        systemctl enable lightdm
-        ;;
-    5|i3|I3)
-        pacman -S i3 xterm --noconfirm
-        pacman -S lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings --noconfirm
-        systemctl enable lightdm
-        ;;
-    6|Awesome|awesome|AWESOME)
-        pacman -S awesome xterm --noconfirm
-        pacman -S lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings --noconfirm
-        systemctl enable lightdm
-        ;;
+    
+    2|Other|OTHER|other)
+        bash ~/KryArch/banner.sh
+        echo "-----------------------"
+        echo -e " * Choose your desktop. \n-----------------------\n1-Plasma -->> Recommended and Supported\n2-Xfce\n3-Gnome\n4-Mate\n5-i3\n6-Awesome\n7-Skip" 
+        echo "-----------------------"
+        read desktop
+
+        case $desktop in
+            3|Gnome|gnome|GNOME)
+                pacman -S gnome gnome-tweaks --noconfirm
+                systemctl enable gdm
+                ;;
+            2|Xfce|xfce|XFCE)
+                pacman -S xfce4 xfce4-goodies --noconfirm 
+                pacman -S lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings --noconfirm
+                systemctl enable lightdm
+                ;;
+            1|Plasma|plasma|PLASMA)
+                pacman -S plasma-meta terminator dolphin --noconfirm 
+                pacman -S sddm --needed --noconfirm 
+                systemctl enable sddm
+                echo "[Theme]" > /etc/sddm.conf
+                echo "Current=Nordic" >> /etc/sddm.conf
+                echo "plasma=true" >> ~/KryArch/envs.conf
+                cp -R /root/KryArch /home/$username/KryArch
+                chown -R $username:users /home/$username/KryArch
+               ;;
+            4|Mate|mate|MATE)
+                pacman -S mate mate-extra
+                pacman -S lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings --noconfirm
+                systemctl enable lightdm
+                ;;
+            5|i3|I3)
+                pacman -S i3 xterm --noconfirm
+                pacman -S lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings --noconfirm
+                systemctl enable lightdm
+                ;;
+            6|Awesome|awesome|AWESOME)
+                pacman -S awesome xterm --noconfirm
+                pacman -S lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings --noconfirm
+                systemctl enable lightdm
+                ;;
+            *)
+                ;;
+        esac
     *)
         ;;
 esac
-
-cp -R /root/KryArch /home/$username/KryArch
-chown -R $username:users /home/$username/KryArch
