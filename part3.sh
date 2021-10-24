@@ -22,7 +22,7 @@ mkdir -p ~/.local/share/icons/Blue-Zafiro-Plus/apps/scalable
 cp misc/config ~/.config/terminator/config
 cp misc/fish_prompt.fish ~/.config/fish/functions/fish_prompt.fish
 cp misc/fish_variables ~/.config/fish/fish_variables
-cp misc/arch-ico.svg ~/.local/share/icons/Blue-Zafiro-Plus/apps/scalable/arch-ico.svg
+cp misc/arch-ico.svg ~/.local/share/icons/Blue-Zafiro-Plus/apps/scalable/
 echo "set fish_greeting" > ~/.config/fish/config.fish
 echo 1| konsave -i ~/KryArch/kryarch-kde.knsv
 konsave -a kryarch-kde
