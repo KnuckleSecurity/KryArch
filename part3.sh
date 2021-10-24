@@ -27,6 +27,7 @@ echo "set fish_greeting" > ~/.config/fish/config.fish
 echo 1| konsave -i ~/KryArch/kryarch-kde.knsv
 konsave -a kryarch-kde
 sudo cp misc/wallpaper.png /usr/share/sddm/themes/Nordic/assets/bg.jpg
+sudo rm -rf /usr/share/wallpapers/Next/contents/images/*
 sudo cp misc/wallpaper.png /usr/share/wallpapers/Next/contents/images/1920x1080.png
 echo "exec fish" > ~/.zshrc
 chsh -s /usr/bin/zsh $(whoami)
