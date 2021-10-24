@@ -9,7 +9,7 @@
 
 bash ~/KryArch/banner.sh
 echo "-------------------------------------------------"
-echo " * Do you want to create a swap partition - y/N ?"
+echo " * Do you want to create a swap partition - Y/N ?"
 echo "-------------------------------------------------"
 read -p ">> " SWP
 case $SWP in
