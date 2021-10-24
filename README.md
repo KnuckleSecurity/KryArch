@@ -5,6 +5,7 @@ Installing process takes approximately 5 minutes.
 Recommended desktop environment is KDE Plasma. It comes
 with a freshy looking theme, and a custom terminal
 
+<image src="https://www.hizliresim.com/k4jypiu"/>
 ## Installiation
 ```
 pacman -Sy git
