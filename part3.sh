@@ -35,6 +35,10 @@ echo "-------------------------------------"
 echo " * Changing default shell to Z Shell."
 echo "-------------------------------------"
 chsh -s /usr/bin/zsh $(whoami)
-zsh
-fisher install jethrokuan/fzf
+echo "fisher install jethrokuan/fzf" | fish
+bash ~/KryArch/banner.sh
+
+echo "---------------------------------------------------------------------------------------------------------------"
+echo " * Installiaton has been completed. You can remove installiation media now and Reboot, thanks for using KryArch"
+echo "---------------------------------------------------------------------------------------------------------------"
 
