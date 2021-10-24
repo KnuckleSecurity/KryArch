@@ -24,6 +24,21 @@ case $SWP in
 esac
 
 bash ~/KryArch/banner.sh
+echo "-------------------------------------------"
+echo " Installing and setting up GRUB bootloader. "
+echo "-------------------------------------------"
+pacman -Sy grub efibootmgr dosfstools os-prober mtools --noconfirm --needed
+grub-install --target=x86_64-efi --bootloader-id=grub_uefi --recheck
+grub-mkconfig -o /boot/grub/grub.cfg
+
+bash ~/KryArch/banner.sh
+echo "-------------------------------------------------"
+echo " Downloading and configuring networking packages."
+echo "-------------------------------------------------"
+pacman -S networkmanager dhclient --noconfirm --needed
+systemctl enable NetworkManager
+
+bash ~/KryArch/banner.sh
 echo "---------------------------------"
 echo " Setting package manager configs."
 echo "---------------------------------"
@@ -38,24 +53,11 @@ sed -i '/#\[multilib\]/s/^#//' /etc/pacman.conf
 sed -i '/\[multilib\]/{n;s/^#//;}' /etc/pacman.conf
 #'/\[multilib\]/,/Include/s/^#//'
 
-
-
-bash ~/KryArch/banner.sh
-echo "-------------------------------------------------"
-echo " Downloading and configuring networking packages."
-echo "-------------------------------------------------"
-pacman -S networkmanager dhclient --noconfirm --needed
-systemctl enable NetworkManager
-
-
-
 bash ~/KryArch/banner.sh
 echo "------------------------------"
 echo " * Create a password for root."
 echo "------------------------------"
 passwd root
-
-
 
 bash ~/KryArch/banner.sh
 echo "------------------------"
@@ -63,7 +65,6 @@ echo " * Specify the hostname."
 echo "------------------------"
 sleep 0.1
 read -p "Hostname >> " hostname
-
 
 bash ~/KryArch/banner.sh
 echo "-----------------"
@@ -73,14 +74,11 @@ sleep 0.1
 read -p "Username >> " username
 useradd -m -g users -G wheel -s /bin/bash $username 
 
-
-
 bash ~/KryArch/banner.sh
 echo "----------------------------------------"
 echo " * Create a password for user $username: "
 echo "----------------------------------------"
 passwd $username
-
 
 bash ~/KryArch/banner.sh
 echo "-----------------------------------"
@@ -97,18 +95,6 @@ echo "127.0.0.1     localhost" > /etc/hosts
 echo "::1           localhost" >> /etc/hosts
 echo "127.0.1.1     $hostname.localdomain $hostname" >> /etc/hosts
 echo "$hostname" > /etc/hostname
-
-
-
-bash ~/KryArch/banner.sh
-echo "-------------------------------------------"
-echo " Installing and setting up GRUB bootloader. "
-echo "-------------------------------------------"
-pacman -Sy grub efibootmgr dosfstools os-prober mtools --noconfirm --needed
-grub-install --target=x86_64-efi --bootloader-id=grub_uefi --recheck
-grub-mkconfig -o /boot/grub/grub.cfg
-
-
 
 bash ~/KryArch/banner.sh
 CPU=$(lscpu | awk '/Vendor ID:/ {print $3}')
@@ -129,12 +115,10 @@ case $CPU in
     ;;
 esac
 
-
-
 bash ~/KryArch/banner.sh
-echo "--------------------------------"
-echo -e " * Select your GPU manufacturer.\n--------------------------------\n1-AMD Radeon\n2-NVIDIA GeForce\n3-AMD Integrated\n4-Intel Integrated\n5-Virtual Machine\n6-Skip"
-echo "--------------------------------"
+echo "------------------------"
+echo -e " * Choose your graphics.\n--------------------------------\n1-AMD Radeon\n2-NVIDIA GeForce\n3-AMD Integrated\n4-Intel Integrated\n5-Virtual Machine\n6-Skip"
+echo "------------------------"
 sleep 0.1
 read -p ">>" GPU
 case $GPU in
