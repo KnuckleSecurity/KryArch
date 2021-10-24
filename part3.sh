@@ -26,8 +26,8 @@ cp misc/arch-ico.svg ~/.local/share/icons/Blue-Zafiro-Plus/apps/scalable/arch-ic
 echo "set fish_greeting" > ~/.config/fish/config.fish
 echo 1| konsave -i ~/KryArch/kryarch-kde.knsv
 konsave -a kryarch-kde
-sudo cp misc/finland_forest_lake-wallpaper-1920x1080.jpg /usr/share/sddm/themes/Nordic/assets/bg.jpg
-sudo cp misc/finland_forest_lake-wallpaper-1920x1080.jpg /usr/share/wallpapers/Next/contents/images/1920x1080.png
+sudo cp misc/wallpaper.png /usr/share/sddm/themes/Nordic/assets/bg.jpg
+sudo cp misc/wallpaper.png /usr/share/wallpapers/Next/contents/images/1920x1080.png
 echo "exec fish" > ~/.zshrc
 chsh -s /usr/bin/zsh $(whoami)
 zsh
