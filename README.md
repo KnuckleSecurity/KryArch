@@ -5,10 +5,6 @@ Installing process takes approximately 5 minutes.
 Recommended desktop environment is KDE Plasma. It comes
 with a freshy looking theme, and a custom terminal
 
-<img src=""https://i.hizliresim.com/a13zp43.png />
-<img src="https://i.hizliresim.com/j95m0p0.png" />
-<img src="https://i.hizliresim.com/k4jypiu.png" />
-
 ## Installiation
 ```
 pacman -Sy git
@@ -22,3 +18,6 @@ You have to enable EFI.
 ### Images
 Default KDE Plasma setup
 <br>
+<img src="https://i.hizliresim.com/a13zp43.png" />
+<img src="https://i.hizliresim.com/j95m0p0.png" />
+<img src="https://i.hizliresim.com/k4jypiu.png" />
