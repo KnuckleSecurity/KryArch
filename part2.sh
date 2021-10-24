@@ -73,8 +73,8 @@ echo " * Create a user."
 echo "-----------------"
 sleep 0.1
 read -p "Username >> " username
-touch envs.conf
-echo "username=${username}" > envs.conf
+touch ~/KryArch/envs.conf
+echo "username=${username}" > ~/KryArch/envs.conf
 useradd -m -g users -G wheel -s /bin/bash $username 
 
 bash ~/KryArch/banner.sh
@@ -179,7 +179,7 @@ case $desktop in
         systemctl enable sddm
         echo "[Theme]" > /etc/sddm.conf
         echo "Current=Nordic" > /etc/sddm.conf
-        echo "Plasma=true" >> envs.conf
+        echo "Plasma=true" >> ~/KryArch/envs.conf
        ;;
     4|Mate|mate|MATE)
         pacman -S mate mate-extra
