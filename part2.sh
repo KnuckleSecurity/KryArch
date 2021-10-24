@@ -64,7 +64,7 @@ bash ~/KryArch/banner.sh
 echo "------------------------"
 echo " * Specify the hostname."
 echo "------------------------"
-echo "!! Do nut use capital letters."
+echo "!! Do not use capital letters."
 echo "------------------------------"
 sleep 0.1
 read -p "Hostname >> " hostname
@@ -73,7 +73,7 @@ bash ~/KryArch/banner.sh
 echo "-----------------"
 echo " * Create a user."
 echo "-----------------"
-echo "!! Do nut use capital letters."
+echo "!! Do not use capital letters."
 echo "------------------------------"
 sleep 0.1
 read -p "Username >> " username
