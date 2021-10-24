@@ -223,4 +223,4 @@ case $desktop in
         ;;
     *)
         ;;
-esacC
+esac
