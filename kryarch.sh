@@ -5,6 +5,11 @@ if test -f flag_done; then
     source /mnt/root/KryArch/envs.conf
     if [[ $plasma == "true" ]]; then
         arch-chroot /mnt /usr/bin/runuser -u $username -- /home/$username/KryArch/part3.sh
+    else
+        bash ~/KryArch/banner.sh
+        echo "---------------------------------------------------------------------------------------------------------------"
+        echo " * Installiaton has been completed. You can remove installiation media now and Reboot, thanks for using KryArch"
+        echo "---------------------------------------------------------------------------------------------------------------"
     fi
 fi
 
