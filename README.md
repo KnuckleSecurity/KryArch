@@ -15,3 +15,6 @@ cd KryArch
 ```
 ##### Note
 You have to enable EFI.
+
+![Desktop View](readme.d/kryarch2.png)
+![Desktop View](readme.d/kryarch3.png)
