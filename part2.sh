@@ -163,7 +163,7 @@ echo -e " * Choose your desktop. \n-----------------------\n1-Plasma -->> Recomm
 echo "------------------------------------------------"
 read desktop
 
-case
+case $desktop in
     1|Plasma|plasma|PLASMA)
         pacman -S plasma-meta terminator dolphin --noconfirm 
         pacman -S sddm --needed --noconfirm 
