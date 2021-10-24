@@ -23,7 +23,7 @@ cp misc/config ~/.config/terminator/config
 cp misc/fish_prompt.fish ~/.config/fish/functions/fish_prompt.fish
 cp misc/fish_variables ~/.config/fish/fish_variables
 cp misc/arch-ico.svg ~/.local/share/icons/Blue-Zafiro-Plus/apps/scalable/arch-ico.svg
-echo "set fish_greeting" > ~/config/fish/config.fish
+echo "set fish_greeting" > ~/.config/fish/config.fish
 konsave -i ~/KryArch/kryarch-kde.knsv
 konsave -a kryarch-kde
 sudo cp misc/finland_forest_lake-wallpaper-1920x1080.jpg /usr/share/sddm/themes/Nordic/assets/bg.jpg
