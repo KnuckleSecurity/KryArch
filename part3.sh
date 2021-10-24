@@ -5,12 +5,13 @@ cd ~
 cd ~/yay-bin
 makepkg -si --noconfirm
 yay -S terminator firefox zsh fish konsave sddm-nordic-theme-git --noconfirm --needed
-konsave -i ~/kryarch-kde.knsv
+konsave -i ~/KryArch/kryarch-kde.knsv
 konsave -a kryarch-kde
 cd ~/KryArch 
 mkdir -p ~/.config/terminator
 mkdir -p ~/.config/fish/functions
 mkdir -p ~/.local/share/kxmlgui5
+mkdir ~/Pictures
 cp misc/config ~/.config/terminator/config
 cp misc/fish_prompt.fish ~/.config/fish/functions/fish_prompt.fish
 sudo cp misc/finland_forest_lake-wallpaper-1920x1080.jpg ~/Pictures
