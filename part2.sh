@@ -73,6 +73,7 @@ echo " * Create a user."
 echo "-----------------"
 sleep 0.1
 read -p "Username >> " username
+touch envs.conf
 echo "username=${username}" > envs.conf
 useradd -m -g users -G wheel -s /bin/bash $username 
 
