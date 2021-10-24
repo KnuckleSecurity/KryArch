@@ -73,6 +73,7 @@ echo " * Create a user."
 echo "-----------------"
 sleep 0.1
 read -p "Username >> " username
+echo "username=${username}" > username.conf
 useradd -m -g users -G wheel -s /bin/bash $username 
 
 bash ~/KryArch/banner.sh
@@ -175,11 +176,7 @@ case $desktop in
         pacman -S plasma-meta terminator dolphin --noconfirm 
         pacman -S sddm --needed --noconfirm 
         systemctl enable sddm
-        echo "[Theme]" > /etc/sddm.conf
-        echo "Current=Nordic" >> /etc/sddm.conf
-        cd /home/$username
-        sudo /usr/bin/runuser -u $username -- part3.sh
-        ;;
+       ;;
     4|Mate|mate|MATE)
         pacman -S mate mate-extra
         pacman -S lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings --noconfirm
@@ -199,7 +196,5 @@ case $desktop in
         ;;
 esac
 
-bash ~/KryArch/banner.sh
-echo "-------------------------------------------"
-echo "Installiation finished, you can reboot now."
-echo "-------------------------------------------"
+cp -r /root/KryArch /home/$username/KryArch
+chown $username:users /home/$username/KryArch
