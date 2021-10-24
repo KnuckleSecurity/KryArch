@@ -179,7 +179,7 @@ case $desktop in
         systemctl enable sddm
         echo "[Theme]" > /etc/sddm.conf
         echo "Current=Nordic" > /etc/sddm.conf
-        echo "Plasma=true" >> ~/KryArch/envs.conf
+        echo "plasma=true" >> ~/KryArch/envs.conf
        ;;
     4|Mate|mate|MATE)
         pacman -S mate mate-extra
