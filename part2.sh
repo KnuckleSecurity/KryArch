@@ -159,7 +159,7 @@ esac
 
 bash ~/KryArch/banner.sh
 echo "------------------------------------------------"
-echo -e " * Choose your desktop. \n-----------------------\n1-Plasma -->> Recommended and Supported\n2-Other" 
+echo -e " * Choose your desktop. \n------------------------------------------------\n1-Plasma -->> Recommended and Supported\n2-Other" 
 echo "------------------------------------------------"
 read desktop
 
