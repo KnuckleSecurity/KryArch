@@ -1,10 +1,19 @@
+
+bash ~/KryArch/banner.sh
+echo "-----------------------------"
+echo " * Installing YAY Aur helper."
+echo "-----------------------------"
 sudo pacman -Sy git --noconfirm
 cd ~
 git clone https://aur.archlinux.org/yay-bin.git
 cd ~
 cd ~/yay-bin
 makepkg -si --noconfirm
-yay -S terminator firefox zsh fish fisher fzf konsave sddm-nordic-theme-git kvantum-qt5 --noconfirm --needed
+bash ~/KryArch/banner.sh
+echo "---------------------------------------------"
+echo " * Setting up KDE Plasma desktop environment."
+echo "---------------------------------------------"
+yay -S terminator firefox zsh fish fisher fzf konsave sddm-nordic-theme-git kvantum-theme-nordic-git kvantum-qt5 --noconfirm --needed
 cd ~/KryArch 
 mkdir -p ~/.config/terminator
 mkdir -p ~/.config/fish/functions
