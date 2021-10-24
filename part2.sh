@@ -200,5 +200,5 @@ case $desktop in
         ;;
 esac
 
-cp -r /root/KryArch /home/$username/KryArch
-chown $username:users /home/$username/KryArch
+cp -R /root/KryArch /home/$username/KryArch
+chown -R $username:users /home/$username/KryArch
