@@ -31,9 +31,9 @@ sudo rm -rf /usr/share/wallpapers/Next/contents/images/*
 sudo cp misc/wallpaper.png /usr/share/wallpapers/Next/contents/images/1920x1080.png
 echo "exec fish" > ~/.zshrc
 bash ~/KryArch/banner.sh
-echo "----------------------------"
-echo " Type in your user password."
-echo "----------------------------"
+echo "-------------------------------------"
+echo " * Changing default shell to Z Shell."
+echo "-------------------------------------"
 chsh -s /usr/bin/zsh $(whoami)
 zsh
 fisher install jethrokuan/fzf
