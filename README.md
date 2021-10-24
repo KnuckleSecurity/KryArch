@@ -5,7 +5,6 @@ Installing process takes approximately 5 minutes.
 Recommended desktop environment is KDE Plasma. It comes
 with a freshy looking theme, and a custom terminal
 
-![Desktop View](readme.d/kryarch.png)
 ## Installiation
 ```
 pacman -Sy git
@@ -15,6 +14,8 @@ cd KryArch
 ```
 ##### Note
 You have to enable EFI.
+<br>
 
+![Desktop View](readme.d/kryarch.png)
 ![Desktop View](readme.d/kryarch2.png)
 ![Desktop View](readme.d/kryarch3.png)
