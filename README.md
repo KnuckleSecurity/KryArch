@@ -1,9 +1,5 @@
 # KryArch
-KryArch is an ArchLinux Install Script.
-It is comfortable to use and easy to track the steps.
-Installing process takes approximately 5 minutes.
-Recommended desktop environment is KDE Plasma. It comes
-with a freshy looking theme, and a custom terminal
+KryArch is an ArchLinux Install Script. It is comfortable to use and easy to track the steps. Installing process takes approximately 5 minutes. The recommended desktop environment is KDE Plasma. It comes with a fresh-looking theme, and a custom terminal
 
 ## Installiation
 ```
